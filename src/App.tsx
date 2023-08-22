@@ -1,9 +1,10 @@
+import { Global } from '@emotion/react';
+import reset from 'libs/style/reset';
+
 function App() {
   return (
     <>
-      <div className="App">hi</div>
-      <span>hi</span>
-      <a>learn react</a>
+      <Global styles={reset} />
     </>
   );
 }
