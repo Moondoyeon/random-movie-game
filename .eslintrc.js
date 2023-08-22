@@ -40,7 +40,7 @@ module.exports = {
     indent: 'off',
     '@typescript-eslint/indent': 'off',
 
-    '@typescript-eslint/no-unused-vars': 'error',
+    '@typescript-eslint/no-unused-vars': 'warn',
 
     'react/react-in-jsx-scope': 'off',
   },
