@@ -43,5 +43,7 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 'warn',
 
     'react/react-in-jsx-scope': 'off',
+
+    'react/no-unknown-property': ['error', { ignore: ['css'] }],
   },
 };
