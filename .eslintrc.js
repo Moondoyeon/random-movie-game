@@ -24,7 +24,6 @@ module.exports = {
   plugins: [
     '@typescript-eslint',
     'import',
-
     'react',
     'react-hooks',
     '@tanstack/query',
@@ -33,7 +32,7 @@ module.exports = {
   ],
   settings: { react: { version: 'detect' } },
   rules: {
-    'prettier/prettier': ['error', { endOfLine: 'auto' }], // 일관된 줄끝
+    'prettier/prettier': ['error'],
     semi: 'off',
     'no-undef': 'off',
 

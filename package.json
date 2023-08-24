@@ -15,7 +15,9 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "jest",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "pretty": "prettier --write src",
+    "fix": "eslint --fix src"
   },
   "eslintConfig": {
     "extends": [
