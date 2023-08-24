@@ -1,11 +1,20 @@
 import { ReactNode } from 'react';
 import Header from './Header';
+import { css } from '@emotion/react';
 
 function PageLayout({ children }: { children: ReactNode }) {
   return (
     <>
       <Header />
-      <div>{children}</div>
+      <div
+        css={css`
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        `}
+      >
+        {children}
+      </div>
     </>
   );
 }

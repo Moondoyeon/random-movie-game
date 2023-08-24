@@ -46,6 +46,8 @@ const colors = {
   red700: '#d32f2f',
   red800: '#c62828',
   red900: '#b71c1c',
+  darkRed100: '#A35D6E',
+  darkRed200: '#5b1f30',
   orange50: '#fff3e0',
   orange100: '#ffe0b2',
   orange200: '#ffcc80',
