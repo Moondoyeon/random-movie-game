@@ -33,7 +33,7 @@ module.exports = {
   ],
   settings: { react: { version: 'detect' } },
   rules: {
-    'prettier/prettier': 'error',
+    'prettier/prettier': ['error', { endOfLine: 'auto' }], // 일관된 줄끝
     semi: 'off',
     'no-undef': 'off',
 
