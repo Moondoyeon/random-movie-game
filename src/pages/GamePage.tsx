@@ -1,5 +1,6 @@
-import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import { http } from 'libs/api/http';
+import Modal from 'libs/components/Modal';
 import Slot from 'libs/components/Slot';
 import colors from 'libs/constants/colors';
 import {
@@ -7,55 +8,52 @@ import {
   SLOTOPTION_TYPE,
   SLOTOPTION_YEAR,
 } from 'libs/constants/slotOptions';
+import { MovieData, SlotOption } from 'libs/types/game';
 import { useEffect, useState } from 'react';
 
-export type SlotOption = 'country' | 'year' | 'type';
-
 export default function GamePage() {
-  const [isTrue] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isFirstEntry, setIsFirstEntry] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [selected, setSelected] = useState({
     country: '',
     year: '',
     type: '',
   });
   const [isSpinning, setIsSpinning] = useState({
-    country: true,
-    year: true,
-    type: true,
+    country: false,
+    year: false,
+    type: false,
   });
+  const [data, setData] = useState<MovieData | null>(null);
 
-  console.log(selected, isSpinning);
-  const parseDate = () => {
+  const formatDate = () => {
     const month = String(Math.floor(Math.random() * 12) + 1).padStart(2, '0');
     const day = String(Math.floor(Math.random() * 29) + 1).padStart(2, '0');
     const date = `${selected.year}${month}${day}`;
     return date;
   };
-
   const fetchRandomMovie = async () => {
     try {
       return await http.get('', {
-        targetDt: parseDate(),
-        itemPerPage: 3,
+        targetDt: formatDate(),
         multiMovieYn: selected.type,
         repNationCd: selected.country,
+        itemPerPage: 3,
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
   useEffect(() => {
     (async () => {
-      if (!isSpinning.country && !isSpinning.type && !isSpinning.year) {
-        setIsLoading(true);
-        const result = await fetchRandomMovie();
+      if (selected.country && selected.type && selected.year) {
+        const response = await fetchRandomMovie();
+        if (response) setData(response);
         setIsLoading(false);
-        console.log(result);
       }
     })();
-  }, [isSpinning]);
+  }, [selected.country, selected.type, selected.year]);
 
   const getSelectedOption = (name: SlotOption, num: number) => {
     if (name === 'country')
@@ -65,34 +63,50 @@ export default function GamePage() {
     if (name === 'type')
       setSelected({ ...selected, type: SLOTOPTION_TYPE[num][1] });
   };
-
   const stopSpinning = (name: SlotOption) => {
     if (name === 'country') setIsSpinning({ ...isSpinning, country: false });
     if (name === 'year') setIsSpinning({ ...isSpinning, year: false });
     if (name === 'type') setIsSpinning({ ...isSpinning, type: false });
   };
+  const startSpinning = () => {
+    setIsFirstEntry(false);
+    setIsSpinning({
+      country: true,
+      year: true,
+      type: true,
+    });
+  };
+
+  const initGame = () => {
+    setIsFirstEntry(true);
+    setSelected({
+      country: '',
+      type: '',
+      year: '',
+    });
+    setData(null);
+  };
   return (
     <section>
-      {isTrue && <div>halted : start button and backModal</div>}
-      {isLoading && <div>all selected && halted : loading indicator</div>}
-      <div
-        css={css`
-          width: 960px;
-          height: 520px;
-          background-color: ${colors.inverseGrey800};
-          margin: 40px 0;
-          display: flex;
-          justify-content: space-around;
-          padding: 0 36px;
-          border-radius: 10px;
-        `}
-      >
+      {!isSpinning.country && !isSpinning.type && !isSpinning.year && (
+        <Modal
+          isFirstEntry={isFirstEntry}
+          startSpinning={startSpinning}
+          data={data}
+          isLoading={isLoading}
+          selected={selected}
+          initGame={initGame}
+        />
+      )}
+
+      <SlotContainer>
         <Slot
           name="country"
           option={SLOTOPTION_COUNTRY}
           getSelectedOption={getSelectedOption}
           stopSpinning={stopSpinning}
           isSpinning={isSpinning}
+          isFirstEntry={isFirstEntry}
         />
         <Slot
           name="year"
@@ -100,6 +114,7 @@ export default function GamePage() {
           getSelectedOption={getSelectedOption}
           stopSpinning={stopSpinning}
           isSpinning={isSpinning}
+          isFirstEntry={isFirstEntry}
         />
         <Slot
           name="type"
@@ -107,8 +122,20 @@ export default function GamePage() {
           getSelectedOption={getSelectedOption}
           stopSpinning={stopSpinning}
           isSpinning={isSpinning}
+          isFirstEntry={isFirstEntry}
         />
-      </div>
+      </SlotContainer>
     </section>
   );
 }
+
+const SlotContainer = styled.div`
+  width: 960px;
+  height: 520px;
+  background-color: ${colors.inverseGrey800};
+  margin: 40px 0;
+  display: flex;
+  justify-content: space-around;
+  padding: 0 36px;
+  border-radius: 10px;
+`;

@@ -1,29 +1,30 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import colors from 'libs/constants/colors';
-import { SlotOption } from 'pages/GamePage';
+import { SlotOption } from 'libs/types/game';
+import { initNum } from 'libs/utils';
+
 import { useEffect, useState } from 'react';
 
 interface Props {
   name: SlotOption;
   option: string[][];
-  getSelectedOption: (name: SlotOption, num: number) => void;
-  stopSpinning: (name: SlotOption) => void;
   isSpinning: {
     [key: string]: boolean;
   };
+  isFirstEntry: boolean;
+  stopSpinning: (name: SlotOption) => void;
+  getSelectedOption: (name: SlotOption, num: number) => void;
 }
 export default function Slot({
   name,
   option,
-  getSelectedOption,
-  stopSpinning,
   isSpinning,
+  isFirstEntry,
+  stopSpinning,
+  getSelectedOption,
 }: Props) {
   const n = option.length;
-  const initNum = () => {
-    return Math.floor(Math.random() * n);
-  };
   const addNum = (num: number) => {
     if (num === n - 1) return 0;
     else return num + 1;
@@ -33,21 +34,23 @@ export default function Slot({
     if (num === n) return 0;
     else return num;
   };
-  const [num, setNum] = useState(initNum());
+  const [num, setNum] = useState(initNum(n));
   let interval: ReturnType<typeof setInterval>;
 
   useEffect(() => {
-    interval = setInterval(() => {
-      const nextNum = num;
-      setNum(addNum(nextNum));
-    }, 500);
-    return () => {
-      clearInterval(interval);
-    };
-  }, [num]);
+    if (!isFirstEntry && isSpinning[name]) {
+      interval = setInterval(() => {
+        const nextNum = num;
+        setNum(addNum(nextNum));
+      }, 500);
+      return () => {
+        clearInterval(interval);
+      };
+    }
+  }, [num, isFirstEntry, isSpinning[name]]);
 
   useEffect(() => {
-    if (!isSpinning[name]) {
+    if (!isFirstEntry && !isSpinning[name]) {
       clearInterval(interval);
       getSelectedOption(name, num);
     }
