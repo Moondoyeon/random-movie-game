@@ -23,12 +23,13 @@ export default function Modal({
   startSpinning,
   initGame,
 }: Props) {
-  const { boxOfficeResult: { dailyBoxOfficeList: movieList = [] } = {} } =
+  const { boxOfficeResult: { weeklyBoxOfficeList: movieList = [] } = {} } =
     data || {};
   const isFetched = movieList.length;
   const selectedMovie = movieList[initNum(movieList.length)];
   const country = selected.country === 'K' ? '국내' : '외국';
   const type = selected.type === 'N' ? '상업영화' : '다양성영화';
+
   return (
     <ModalContainer>
       {isFirstEntry && !selected.country && (

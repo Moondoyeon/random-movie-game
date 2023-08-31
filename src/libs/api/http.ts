@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { MovieData } from 'libs/types/game';
-
-const axiosInstance = axios.create({
+export const axiosInstance = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
   params: {
     key: process.env.REACT_APP_KOBIS_API_KEY,
+    weekGb: 0,
+    itemPerPage: 5,
   },
   timeout: 3000,
   headers: {
@@ -12,29 +12,71 @@ const axiosInstance = axios.create({
   },
 });
 
-// axiosInstance.interceptors.request.use(config => {
-//   console.log(`request: `, config);
-//   return config;
-// });
-
-// axiosInstance.interceptors.response.use(
-//   response => {
-//     // Log the response
-//     // console.log('Response:', response);
-//     return response;
-//   },
-//   error => {
-//     // console.error('Error:', error);
-//     return Promise.reject(error);
-//   },
-// );
-
 type ParamsType = {
-  [key: string]: string | number;
+  targetDt: string;
+  repNationCd: string;
+  multiMovieYn: string;
 };
 
 export const http = {
-  get: function get<Response = MovieData>(url: string, params: ParamsType) {
-    return axiosInstance.get<Response>(url, { params }).then(res => res.data);
+  get: function get(url: string, params: ParamsType) {
+    return axiosInstance.get(url, { params }).then(response => response.data);
   },
 };
+
+export class CacheApi {
+  private static movieCacheStorage = 'CACHE_STORAGE_MOVIE';
+  private static baseUrl = process.env.REACT_APP_BASE_URL;
+  private static defaultParams = `key=${process.env.REACT_APP_KOBIS_API_KEY}&weekGb=0&itemPerPage=5`;
+  private static X_Fetch_Response_Time = 'X-Fetch-Response-Time';
+
+  private static async isCacheExpired(cachedResponse: Response | undefined) {
+    const ONE_YEAR_MILLISECONDS = 31536000000;
+    const fetchTime = Number(
+      cachedResponse?.headers?.get(this.X_Fetch_Response_Time),
+    );
+    const today = new Date().getTime();
+
+    return !fetchTime ? false : today - fetchTime > ONE_YEAR_MILLISECONDS;
+  }
+
+  private static async fetchResponse(
+    cache: Cache,
+    params: ParamsType,
+    url: string,
+  ) {
+    const fetchedResponse = await http.get('', params);
+    const newHeads = new Headers(fetchedResponse.headers);
+    newHeads.append(this.X_Fetch_Response_Time, String(new Date().getTime()));
+
+    cache.put(
+      url,
+      new Response(JSON.stringify(fetchedResponse), {
+        headers: newHeads,
+      }),
+    );
+
+    return fetchedResponse;
+  }
+
+  private static async getValidResponse(
+    cache: Cache,
+    params: ParamsType,
+    url: string,
+  ) {
+    const cachedResponse = await cache.match(url);
+
+    return !cachedResponse
+      ? await this.fetchResponse(cache, params, url)
+      : (await this.isCacheExpired(cachedResponse))
+      ? await this.fetchResponse(cache, params, url)
+      : await JSON.parse(await cachedResponse.text());
+  }
+
+  static async getMovieList(params: ParamsType) {
+    const url = `${this.baseUrl}?${this.defaultParams}&targetDt=${params.targetDt}&repNationCd=${params.repNationCd}&multiMovieYn=${params.multiMovieYn}`;
+    const movieCache = await caches.open(this.movieCacheStorage);
+
+    return await this.getValidResponse(movieCache, params, url);
+  }
+}

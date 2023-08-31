@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { http } from 'libs/api/http';
+import { CacheApi } from 'libs/api/http';
 import Modal from 'libs/components/Modal';
 import Slot from 'libs/components/Slot';
 import colors from 'libs/constants/colors';
@@ -28,31 +28,27 @@ export default function GamePage() {
 
   const formatDate = () => {
     const month = String(Math.floor(Math.random() * 12) + 1).padStart(2, '0');
-    const day = String(Math.floor(Math.random() * 29) + 1).padStart(2, '0');
+    const RANDOM_DAY = ['06', '13', '20', '27'];
+    const day = RANDOM_DAY[Math.floor(Math.random() * 4)];
     const date = `${selected.year}${month}${day}`;
     return date;
   };
-  const fetchRandomMovie = async () => {
+  const getMovieData = async () => {
     try {
-      return await http.get('', {
+      const response = await CacheApi.getMovieList({
         targetDt: formatDate(),
         multiMovieYn: selected.type,
         repNationCd: selected.country,
-        itemPerPage: 3,
       });
+
+      if (response) setData(response);
+      setIsLoading(false);
     } catch (error) {
       console.error(error);
     }
   };
-
   useEffect(() => {
-    (async () => {
-      if (selected.country && selected.type && selected.year) {
-        const response = await fetchRandomMovie();
-        if (response) setData(response);
-        setIsLoading(false);
-      }
-    })();
+    if (selected.country && selected.type && selected.year) getMovieData();
   }, [selected.country, selected.type, selected.year]);
 
   const getSelectedOption = (name: SlotOption, num: number) => {

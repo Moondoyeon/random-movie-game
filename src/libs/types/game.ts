@@ -22,7 +22,8 @@ export interface Movie {
 export interface MovieData {
   boxOfficeResult: {
     boxofficeType: string;
-    dailyBoxOfficeList: Movie[];
+    weeklyBoxOfficeList: Movie[];
     showRange: string;
+    yearWeekTime: string;
   };
 }
