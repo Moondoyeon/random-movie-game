@@ -32,51 +32,55 @@ export class CacheApi {
 
   private static async isCacheExpired(cachedResponse: Response | undefined) {
     const ONE_YEAR_MILLISECONDS = 31536000000;
-    const fetchTime = Number(
+    const today = new Date().getTime();
+    const fetchedTime = Number(
       cachedResponse?.headers?.get(this.X_Fetch_Response_Time),
     );
-    const today = new Date().getTime();
 
-    return !fetchTime ? false : today - fetchTime > ONE_YEAR_MILLISECONDS;
+    if (!fetchedTime || today - fetchedTime > ONE_YEAR_MILLISECONDS) {
+      return true;
+    }
+
+    return false;
   }
 
-  private static async fetchResponse(
+  private static async fetchData(
     cache: Cache,
     params: ParamsType,
     url: string,
   ) {
-    const fetchedResponse = await http.get('', params);
-    const newHeads = new Headers(fetchedResponse.headers);
-    newHeads.append(this.X_Fetch_Response_Time, String(new Date().getTime()));
+    const fetchedData = await http.get('', params);
+    const newHeaders = new Headers(fetchedData.headers);
+    newHeaders.append(this.X_Fetch_Response_Time, String(new Date().getTime()));
 
     cache.put(
       url,
-      new Response(JSON.stringify(fetchedResponse), {
-        headers: newHeads,
+      new Response(JSON.stringify(fetchedData), {
+        headers: newHeaders,
       }),
     );
 
-    return fetchedResponse;
+    return fetchedData;
   }
 
-  private static async getValidResponse(
+  private static async getValidData(
     cache: Cache,
     params: ParamsType,
     url: string,
   ) {
-    const cachedResponse = await cache.match(url);
+    const cachedData = await cache.match(url);
 
-    return !cachedResponse
-      ? await this.fetchResponse(cache, params, url)
-      : (await this.isCacheExpired(cachedResponse))
-      ? await this.fetchResponse(cache, params, url)
-      : await JSON.parse(await cachedResponse.text());
+    if (!cachedData || (await this.isCacheExpired(cachedData))) {
+      return this.fetchData(cache, params, url);
+    }
+
+    return JSON.parse(await cachedData.text());
   }
 
   static async getMovieList(params: ParamsType) {
     const url = `${this.baseUrl}?${this.defaultParams}&targetDt=${params.targetDt}&repNationCd=${params.repNationCd}&multiMovieYn=${params.multiMovieYn}`;
     const movieCache = await caches.open(this.movieCacheStorage);
 
-    return await this.getValidResponse(movieCache, params, url);
+    return await this.getValidData(movieCache, params, url);
   }
 }
