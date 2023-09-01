@@ -35,7 +35,7 @@ export default function GamePage() {
   };
   const getMovieData = async () => {
     try {
-      const response = await CacheApi.getMovieList({
+      const response = await CacheApi.getMovieData({
         targetDt: formatDate(),
         multiMovieYn: selected.type,
         repNationCd: selected.country,

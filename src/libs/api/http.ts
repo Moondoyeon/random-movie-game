@@ -6,7 +6,7 @@ export const axiosInstance = axios.create({
     weekGb: 0,
     itemPerPage: 5,
   },
-  timeout: 3000,
+  timeout: 5000,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -30,18 +30,17 @@ export class CacheApi {
   private static defaultParams = `key=${process.env.REACT_APP_KOBIS_API_KEY}&weekGb=0&itemPerPage=5`;
   private static X_Fetch_Response_Time = 'X-Fetch-Response-Time';
 
-  private static async isCacheExpired(cachedResponse: Response | undefined) {
-    const ONE_YEAR_MILLISECONDS = 31536000000;
-    const today = new Date().getTime();
-    const fetchedTime = Number(
-      cachedResponse?.headers?.get(this.X_Fetch_Response_Time),
-    );
+  static async getMovieData(params: ParamsType) {
+    const url = `${this.baseUrl}?${this.defaultParams}&targetDt=${params.targetDt}&repNationCd=${params.repNationCd}&multiMovieYn=${params.multiMovieYn}`;
+    const cache = await caches.open(this.movieCacheStorage);
+    const cachedResponse = await cache.match(url);
 
-    if (!fetchedTime || today - fetchedTime > ONE_YEAR_MILLISECONDS) {
-      return true;
+    if ((await this.isCacheExpired(cachedResponse)) || !cachedResponse) {
+      await cache.delete(url);
+      return this.fetchData(cache, params, url);
     }
 
-    return false;
+    return JSON.parse(await cachedResponse.text());
   }
 
   private static async fetchData(
@@ -49,38 +48,27 @@ export class CacheApi {
     params: ParamsType,
     url: string,
   ) {
-    const fetchedData = await http.get('', params);
-    const newHeaders = new Headers(fetchedData.headers);
+    const fetchedResponse = await http.get('', params);
+    const newHeaders = new Headers(fetchedResponse.headers);
     newHeaders.append(this.X_Fetch_Response_Time, String(new Date().getTime()));
 
     cache.put(
       url,
-      new Response(JSON.stringify(fetchedData), {
+      new Response(JSON.stringify(fetchedResponse), {
         headers: newHeaders,
       }),
     );
 
-    return fetchedData;
+    return fetchedResponse;
   }
 
-  private static async getValidData(
-    cache: Cache,
-    params: ParamsType,
-    url: string,
-  ) {
-    const cachedData = await cache.match(url);
+  private static async isCacheExpired(cachedResponse: Response | undefined) {
+    const ONE_MONTH_MILLISECONDS = 2592000000;
+    const today = new Date().getTime();
+    const fetchedTime = Number(
+      cachedResponse?.headers?.get(this.X_Fetch_Response_Time),
+    );
 
-    if (!cachedData || (await this.isCacheExpired(cachedData))) {
-      return this.fetchData(cache, params, url);
-    }
-
-    return JSON.parse(await cachedData.text());
-  }
-
-  static async getMovieList(params: ParamsType) {
-    const url = `${this.baseUrl}?${this.defaultParams}&targetDt=${params.targetDt}&repNationCd=${params.repNationCd}&multiMovieYn=${params.multiMovieYn}`;
-    const movieCache = await caches.open(this.movieCacheStorage);
-
-    return await this.getValidData(movieCache, params, url);
+    return today - fetchedTime > ONE_MONTH_MILLISECONDS;
   }
 }
