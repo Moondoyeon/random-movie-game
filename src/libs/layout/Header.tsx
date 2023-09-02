@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import Txt from 'libs/components/Txt';
-import colors from 'libs/constants/colors';
+import colors from 'libs/style/colors';
 function Header() {
   return (
     <div

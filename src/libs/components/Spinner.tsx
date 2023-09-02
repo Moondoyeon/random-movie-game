@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import colors from 'libs/constants/colors';
+import colors from 'libs/style/colors';
 
 const Spinner = styled.div`
   border: 10px solid ${colors.grey300};
