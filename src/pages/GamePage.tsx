@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { CacheApi } from 'libs/api/http';
 import Modal from 'libs/components/Modal';
 import Slot from 'libs/components/Slot';
-import colors from 'libs/constants/colors';
+import colors from 'libs/style/colors';
 import {
   SLOTOPTION_COUNTRY,
   SLOTOPTION_TYPE,
@@ -10,6 +10,7 @@ import {
 } from 'libs/constants/slotOptions';
 import { MovieData, SlotOption } from 'libs/types/game';
 import { useEffect, useState } from 'react';
+import { responsive } from 'libs/style/mixin';
 
 export default function GamePage() {
   const [isFirstEntry, setIsFirstEntry] = useState(true);
@@ -136,4 +137,11 @@ const SlotContainer = styled.div`
   justify-content: space-around;
   padding: 0 36px;
   border-radius: 10px;
+  ${responsive('phone')} {
+    width: 400px;
+    padding: 0 30px;
+  }
+  ${responsive('tablet')} {
+    width: 700px;
+  }
 `;

@@ -1,10 +1,11 @@
 import { css } from '@emotion/react';
 import Txt from './Txt';
-import colors from 'libs/constants/colors';
+import colors from 'libs/style/colors';
 import styled from '@emotion/styled';
 import { initNum } from 'libs/utils';
 import { MovieData } from 'libs/types/game';
 import Spinner from './Spinner';
+import { responsive } from 'libs/style/mixin';
 
 interface Props {
   isFirstEntry: boolean;
@@ -41,25 +42,27 @@ export default function Modal({
             position: absolute;
             letter-spacing: 30px;
             cursor: pointer;
+            ${responsive('phone')} {
+              font-size: 40px;
+            }
           `}
           onClick={startSpinning}
         >
           START
         </Txt>
       )}
-
       {isLoading && !isFirstEntry && (
         <GameResultContainer>
           <Spinner />
         </GameResultContainer>
       )}
-
       {isFetched && selected.country && (
         <GameResultContainer>
           <GameResultContent>
             <Txt typography="p" color={colors.black}>
               뽑기결과
             </Txt>
+
             <Txt
               typography="h5"
               color={colors.black}
@@ -122,6 +125,11 @@ const GameResultContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 16px 0;
+  ${responsive('phone')} {
+    width: 400px;
+    top: 20%;
+  }
 `;
 
 const GameResultContent = styled.div`
