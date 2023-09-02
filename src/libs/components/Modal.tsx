@@ -44,6 +44,7 @@ export default function Modal({
             cursor: pointer;
             ${responsive('phone')} {
               font-size: 40px;
+              top: 26%;
             }
           `}
           onClick={startSpinning}
