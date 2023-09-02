@@ -56,7 +56,7 @@ export default function Modal({
           <Spinner />
         </GameResultContainer>
       )}
-      {isFetched && selected.country && (
+      {isFetched > 0 && selected.country && (
         <GameResultContainer>
           <GameResultContent>
             <Txt typography="p" color={colors.black}>
