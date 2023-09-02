@@ -4,6 +4,7 @@ import colors from 'libs/constants/colors';
 import styled from '@emotion/styled';
 import { initNum } from 'libs/utils';
 import { MovieData } from 'libs/types/game';
+import Spinner from './Spinner';
 
 interface Props {
   isFirstEntry: boolean;
@@ -46,19 +47,14 @@ export default function Modal({
           START
         </Txt>
       )}
+
       {isLoading && !isFirstEntry && (
-        <div
-          css={css`
-            font-size: 150px;
-            color: white;
-            z-index: 99;
-          `}
-        >
-          loading
-        </div>
+        <GameResultContainer>
+          <Spinner />
+        </GameResultContainer>
       )}
+
       {isFetched && selected.country && (
-        // TODO: 에러메시지
         <GameResultContainer>
           <GameResultContent>
             <Txt typography="p" color={colors.black}>
@@ -68,7 +64,7 @@ export default function Modal({
               typography="h5"
               color={colors.black}
               css={css`
-                padding: 20px 20px;
+                padding: 20px;
                 text-align: center;
                 width: 100%;
                 word-wrap: break-word;
@@ -119,15 +115,18 @@ const ModalContainer = styled.div`
 
 const GameResultContainer = styled.div`
   position: absolute;
-  background-color: #ffffff;
+  background-color: ${colors.white};
   width: 500px;
   min-height: 200px;
-  padding: 10px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const GameResultContent = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 0;
 `;

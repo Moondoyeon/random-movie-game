@@ -81,7 +81,9 @@ export default function GamePage() {
       year: '',
     });
     setData(null);
+    setIsLoading(true);
   };
+
   return (
     <section>
       {!isSpinning.country && !isSpinning.type && !isSpinning.year && (
