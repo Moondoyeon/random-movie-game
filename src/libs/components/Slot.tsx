@@ -94,6 +94,7 @@ export default function Slot({
         <SlotCard>{option[rotateNum(num + 1)][0]}</SlotCard>
       </div>
       <button
+        aria-label={name}
         disabled={!isSpinning[name]}
         onClick={handleButtonClick}
         css={css`

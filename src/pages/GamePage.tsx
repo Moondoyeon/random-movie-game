@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { CacheApi } from 'libs/api/http';
 import Modal from 'libs/components/Modal';
 import Slot from 'libs/components/Slot';
 import colors from 'libs/style/colors';
@@ -11,6 +10,8 @@ import {
 import { MovieData, SlotOption } from 'libs/types/game';
 import { useEffect, useState } from 'react';
 import { responsive } from 'libs/style/mixin';
+// import { CacheApi } from 'libs/api/Cache';
+import { http } from 'libs/api/http';
 
 export default function GamePage() {
   const [isFirstEntry, setIsFirstEntry] = useState(true);
@@ -36,7 +37,12 @@ export default function GamePage() {
   };
   const getMovieData = async () => {
     try {
-      const response = await CacheApi.getMovieData({
+      // const response = await CacheApi.getMovieData({
+      //   targetDt: formatDate(),
+      //   multiMovieYn: selected.type,
+      //   repNationCd: selected.country,
+      // });
+      const response = await http.get('', {
         targetDt: formatDate(),
         multiMovieYn: selected.type,
         repNationCd: selected.country,
@@ -45,7 +51,7 @@ export default function GamePage() {
       if (response) setData(response);
       setIsLoading(false);
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   };
   useEffect(() => {
