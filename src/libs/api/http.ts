@@ -1,4 +1,5 @@
 import Axios from 'axios';
+import { MovieData, SlotOptionParams } from 'libs/types/game';
 export const axios = Axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
   params: {
@@ -12,18 +13,25 @@ export const axios = Axios.create({
   },
 });
 
-// type SlotOption = {
-//   targetDt: string;
-//   repNationCd: string;
-//   multiMovieYn: string;
-// };
-
 export type ParamsType = {
   [key: string]: string;
 };
-export const http = {
-  get: async function get(url: string, params?: ParamsType) {
-    const res = await axios.get(url, { params });
-    return res.data;
+
+export const httpForTest = {
+  get: async function get(url: string, params?: SlotOptionParams) {
+    return await axios.get('', { params }).then(res => res.data);
   },
 };
+
+export const httpForCacheHeader = {
+  get: async function get<Response = unknown>(
+    url: string,
+    params?: SlotOptionParams,
+  ) {
+    return await axios.get<Response>(url, { params });
+  },
+};
+
+export function getRandomMovieData(params: SlotOptionParams) {
+  return httpForCacheHeader.get<MovieData>('', params);
+}

@@ -7,11 +7,11 @@ import {
   SLOTOPTION_TYPE,
   SLOTOPTION_YEAR,
 } from 'libs/constants/slotOptions';
-import { MovieData, SlotOption } from 'libs/types/game';
+import { MovieData, SelectedOption } from 'libs/types/game';
 import { useEffect, useState } from 'react';
 import { responsive } from 'libs/style/mixin';
 // import { CacheApi } from 'libs/api/Cache';
-import { http } from 'libs/api/http';
+import { httpForTest } from 'libs/api/http';
 
 export default function GamePage() {
   const [isFirstEntry, setIsFirstEntry] = useState(true);
@@ -42,12 +42,13 @@ export default function GamePage() {
       //   multiMovieYn: selected.type,
       //   repNationCd: selected.country,
       // });
-      const response = await http.get('', {
+      // if (response) setData(response);
+
+      const response = await httpForTest.get('', {
         targetDt: formatDate(),
         multiMovieYn: selected.type,
         repNationCd: selected.country,
       });
-
       if (response) setData(response);
       setIsLoading(false);
     } catch (error) {
@@ -58,7 +59,7 @@ export default function GamePage() {
     if (selected.country && selected.type && selected.year) getMovieData();
   }, [selected.country, selected.type, selected.year]);
 
-  const getSelectedOption = (name: SlotOption, num: number) => {
+  const getSelectedOption = (name: SelectedOption, num: number) => {
     if (name === 'country')
       setSelected({ ...selected, country: SLOTOPTION_COUNTRY[num][1] });
     if (name === 'year')
@@ -66,7 +67,7 @@ export default function GamePage() {
     if (name === 'type')
       setSelected({ ...selected, type: SLOTOPTION_TYPE[num][1] });
   };
-  const stopSpinning = (name: SlotOption) => {
+  const stopSpinning = (name: SelectedOption) => {
     if (name === 'country') setIsSpinning({ ...isSpinning, country: false });
     if (name === 'year') setIsSpinning({ ...isSpinning, year: false });
     if (name === 'type') setIsSpinning({ ...isSpinning, type: false });

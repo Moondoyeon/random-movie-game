@@ -2,20 +2,20 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import colors from 'libs/style/colors';
 import { responsive } from 'libs/style/mixin';
-import { SlotOption } from 'libs/types/game';
+import { SelectedOption } from 'libs/types/game';
 import { initNum } from 'libs/utils';
 
 import { useEffect, useState } from 'react';
 
 interface Props {
-  name: SlotOption;
+  name: SelectedOption;
   option: string[][];
   isSpinning: {
     [key: string]: boolean;
   };
   isFirstEntry: boolean;
-  stopSpinning: (name: SlotOption) => void;
-  getSelectedOption: (name: SlotOption, num: number) => void;
+  stopSpinning: (name: SelectedOption) => void;
+  getSelectedOption: (name: SelectedOption, num: number) => void;
 }
 export default function Slot({
   name,

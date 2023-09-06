@@ -1,7 +1,7 @@
 import { rest } from 'msw';
 
 export function handlers() {
-  return [rest.get(`${process.env.REACT_APP_BASE_URL}`, getRandomMovies)];
+  return [rest.get('', getRandomMovies)];
 }
 
 const getRandomMovies: Parameters<typeof rest.get>[1] = (_, res, ctx) => {

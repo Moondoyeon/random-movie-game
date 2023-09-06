@@ -1,4 +1,11 @@
-export type SlotOption = 'country' | 'year' | 'type';
+import { AxiosResponseHeaders } from 'axios';
+
+export type SelectedOption = 'country' | 'year' | 'type';
+export interface SlotOptionParams {
+  targetDt: string;
+  multiMovieYn: string;
+  repNationCd: string;
+}
 export interface Movie {
   audiAcc: string;
   audiChange: string;
@@ -20,6 +27,7 @@ export interface Movie {
   showCnt: string;
 }
 export interface MovieData {
+  headers: AxiosResponseHeaders;
   boxOfficeResult: {
     boxofficeType: string;
     weeklyBoxOfficeList: Movie[];

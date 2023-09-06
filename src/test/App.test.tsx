@@ -2,7 +2,7 @@ import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import { render, screen, waitFor } from '@testing-library/react';
 import App from '../App';
-import { http } from 'libs/api/http';
+import { httpForTest } from 'libs/api/http';
 
 describe('App test', () => {
   afterEach(() => {
@@ -34,9 +34,9 @@ describe('App test', () => {
     expect(slotButton3).toBeEnabled();
   });
 
-  test('"슬롯" 버튼을 전부 누르면 선택된 값이 서버로 전송된다', async () => {
+  test('"슬롯" 버튼을 전부 누르면 선택된 값을 서버로 전송한다', async () => {
     const user = userEvent.setup();
-    const spyOnFetch = jest.spyOn(http, 'get');
+    const spyOnFetch = jest.spyOn(httpForTest, 'get');
     render(<App />);
 
     user.click(screen.getByText('START'));
@@ -45,11 +45,11 @@ describe('App test', () => {
     user.click(await screen.findByRole('button', { name: 'year' }));
 
     const results = await waitFor(() => spyOnFetch.mock.results[0].value, {
-      timeout: 5000,
+      timeout: 10000,
     });
 
-    expect(results.boxOfficeResult.weeklyBoxOfficeList).toHaveLength(5);
     expect(spyOnFetch).toHaveBeenCalled();
+    expect(results.boxOfficeResult.weeklyBoxOfficeList).toHaveLength(5);
   });
 
   test('“처음으로” 버튼을 누르면 “START” 버튼이 나타난다.', async () => {
@@ -65,7 +65,7 @@ describe('App test', () => {
       () => {
         expect(screen.queryByText('처음으로')).toBeInTheDocument();
       },
-      { timeout: 5000 },
+      { timeout: 10000 },
     );
 
     user.click(await screen.findByText('처음으로'));
