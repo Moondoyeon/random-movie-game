@@ -19,7 +19,7 @@ export type ParamsType = {
 
 export const httpForTest = {
   get: async function get(url: string, params?: SlotOptionParams) {
-    return await axios.get('', { params }).then(res => res.data);
+    return await axios.get(url, { params }).then(res => res.data);
   },
 };
 

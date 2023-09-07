@@ -10,8 +10,8 @@ import {
 import { MovieData, SelectedOption } from 'libs/types/game';
 import { useEffect, useState } from 'react';
 import { responsive } from 'libs/style/mixin';
-// import { CacheApi } from 'libs/api/Cache';
 import { httpForTest } from 'libs/api/http';
+import { CacheApi } from 'libs/api/Cache';
 
 export default function GamePage() {
   const [isFirstEntry, setIsFirstEntry] = useState(true);
@@ -37,19 +37,24 @@ export default function GamePage() {
   };
   const getMovieData = async () => {
     try {
-      // const response = await CacheApi.getMovieData({
-      //   targetDt: formatDate(),
-      //   multiMovieYn: selected.type,
-      //   repNationCd: selected.country,
-      // });
-      // if (response) setData(response);
-
-      const response = await httpForTest.get('', {
-        targetDt: formatDate(),
-        multiMovieYn: selected.type,
-        repNationCd: selected.country,
-      });
-      if (response) setData(response);
+      // browser msw 실행 및 실제 네트워크 요청에서 사용되는 로직
+      if (process.env.NODE_ENV === 'development') {
+        const response = await CacheApi.getMovieData({
+          targetDt: formatDate(),
+          multiMovieYn: selected.type,
+          repNationCd: selected.country,
+        });
+        if (response) setData(response);
+      }
+      // yarn test 에서 사용되는 요청 로직 for Jest in Node
+      if (process.env.NODE_ENV === 'test') {
+        const mockedResponse = await httpForTest.get('', {
+          targetDt: formatDate(),
+          multiMovieYn: selected.type,
+          repNationCd: selected.country,
+        });
+        if (mockedResponse) setData(mockedResponse);
+      }
       setIsLoading(false);
     } catch (error) {
       console.log(error);

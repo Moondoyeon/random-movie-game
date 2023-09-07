@@ -1,15 +1,11 @@
 import { rest } from 'msw';
 
-export function handlers() {
-  return [rest.get('', getRandomMovies)];
-}
-
-const getRandomMovies: Parameters<typeof rest.get>[1] = (_, res, ctx) => {
+const getRandomMovies: Parameters<typeof rest.get>[1] = (req, res, ctx) => {
   return res(
-    ctx.status(200),
+    ctx.status(200, 'ok'),
     ctx.json({
       boxOfficeResult: {
-        boxofficeType: '주말 박스오피스',
+        boxofficeType: '[mocked] 주말 박스오피스',
         showRange: '20210514~20210516',
         yearWeekTime: '202119',
         weeklyBoxOfficeList: [
@@ -118,3 +114,7 @@ const getRandomMovies: Parameters<typeof rest.get>[1] = (_, res, ctx) => {
     }),
   );
 };
+
+export const handlers = [
+  rest.get(`${process.env.REACT_APP_BASE_URL}`, getRandomMovies),
+];

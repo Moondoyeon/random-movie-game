@@ -1,9 +1,5 @@
 import { server } from 'mock/server';
 
-beforeAll(() => {
-  server.listen({ onUnhandledRequest: 'bypass' });
-});
+beforeAll(() => server.listen({ onUnhandledRequest: 'bypass' }));
 afterEach(() => server.resetHandlers());
-afterAll(() => {
-  server.close();
-});
+afterAll(() => server.close());
