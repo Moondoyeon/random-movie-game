@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import Txt from 'libs/components/Txt';
+import Text from 'libs/components/Text';
 import colors from 'libs/style/colors';
 function Header() {
   return (
@@ -10,9 +10,7 @@ function Header() {
         padding: 20px;
       `}
     >
-      <Txt typography="h5" color={colors.black}>
-        random-movie-game
-      </Txt>
+      <Text typography="h5">random-movie-game</Text>
     </div>
   );
 }

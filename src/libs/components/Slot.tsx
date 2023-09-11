@@ -1,29 +1,20 @@
-import { css } from '@emotion/react';
-import styled from '@emotion/styled';
-import colors from 'libs/style/colors';
-import { responsive } from 'libs/style/mixin';
-import { SelectedOption } from 'libs/types/game';
 import { initNum } from 'libs/utils';
+import { HTMLAttributes, useEffect, useState } from 'react';
 
-import { useEffect, useState } from 'react';
-
-interface Props {
-  name: SelectedOption;
+interface Props extends HTMLAttributes<HTMLDivElement> {
+  name: string;
   option: string[][];
-  isSpinning: {
-    [key: string]: boolean;
-  };
+  isSpinning: Record<string, boolean>;
   isFirstEntry: boolean;
-  stopSpinning: (name: SelectedOption) => void;
-  getSelectedOption: (name: SelectedOption, num: number) => void;
+  getSelectedOption: (name: string, num: number) => void;
 }
 export default function Slot({
   name,
   option,
   isSpinning,
   isFirstEntry,
-  stopSpinning,
   getSelectedOption,
+  ...props
 }: Props) {
   const n = option.length;
   const addNum = (num: number) => {
@@ -57,72 +48,30 @@ export default function Slot({
     }
   }, [isSpinning[name], num]);
 
-  const handleButtonClick = () => {
-    stopSpinning(name);
-  };
+  // const stopSpin = () => stopSpinning(name);
 
   return (
-    <div
-      css={css`
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      `}
-    >
-      <div
-        css={css`
-          width: 220px;
-          height: 280px;
-          background-color: ${colors.inverseGrey600};
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          /* box-shadow:; */
-          /* rgba(0, 0, 0, 0.2) 0px -50px 36px -28px inset, */
-          /* rgba(0, 0, 0, 0.2) 0px 50px 36px -28px inset; */
-          ${responsive('phone')} {
-            width: 100px;
-          }
-          ${responsive('tablet')} {
-            width: 180px;
-          }
-        `}
-      >
-        <SlotCard>{option[rotateNum(num - 1)][0]}</SlotCard>
-        <SlotCard>{option[num][0]}</SlotCard>
-        <SlotCard>{option[rotateNum(num + 1)][0]}</SlotCard>
-      </div>
-      <button
-        aria-label={name}
-        disabled={!isSpinning[name]}
-        onClick={handleButtonClick}
-        css={css`
-          width: 50px;
-          height: 50px;
-          margin-top: 30px;
-          border-radius: 100%;
-          background-color: ${colors.darkRed100};
-          box-shadow: ${colors.darkRed200} 3px 3px 0 0;
-          ${responsive('phone')} {
-            width: 40px;
-            height: 40px;
-          }
-          &:active {
-            box-shadow: ${colors.darkRed200} 2px 2px 0 0;
-            transform: translate(2px, 2px);
-          }
-        `}
-      />
-    </div>
+    <>
+      <div {...props}>{option[rotateNum(num - 1)][0]}</div>
+      <div {...props}>{option[num][0]}</div>
+      <div {...props}>{option[rotateNum(num + 1)][0]}</div>
+    </>
   );
 }
 
-const SlotCard = styled.div`
-  padding: 36px 0;
-  font-size: 18px;
-  color: ${colors.green200};
-  ${responsive('phone')} {
-    font-size: 16px;
-  }
-`;
+// const slotButtonStyle = css`
+//   width: 50px;
+//   height: 50px;
+//   margin-top: 30px;
+//   border-radius: 100%;
+//   background-color: ${colors.darkRed100};
+//   box-shadow: ${colors.darkRed200} 3px 3px 0 0;
+//   ${responsive('phone')} {
+//     width: 40px;
+//     height: 40px;
+//   }
+//   &:active {
+//     box-shadow: ${colors.darkRed200} 2px 2px 0 0;
+//     transform: translate(2px, 2px);
+//   }
+// `;
