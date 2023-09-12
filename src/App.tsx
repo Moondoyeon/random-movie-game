@@ -1,7 +1,7 @@
 import { Global } from '@emotion/react';
 import PageLayout from 'libs/layout/PageLayout';
 import reset from 'libs/style/reset';
-import GamePage from 'pages/GamePage';
+import GamePage from 'pages/MovieGamePage';
 
 function App() {
   return (
