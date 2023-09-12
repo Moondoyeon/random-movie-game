@@ -1,19 +1,22 @@
 import { useState } from 'react';
 
 interface Props {
-  option: Record<string, string>;
-  constants: (string | string[][])[][];
+  slotOption: Record<string, Record<string, string>>;
 }
 
-function useSlot({ option, constants }: Props) {
-  const initial = option;
+function useSlot({ slotOption }: Props) {
+  const initOption: Record<string, string> = {};
   const isSpin: Record<string, boolean> = {};
-  const keys = Object.keys(option);
+
+  const keys = Object.keys(slotOption);
+
+  keys.forEach(key => (initOption[key] = ''));
   keys.forEach(key => (isSpin[key] = false));
 
-  const [isFirstEntry, setIsFirstEntry] = useState(true);
-  const [selected, setSelected] = useState(option);
+  const initial = { ...initOption };
+  const [selected, setSelected] = useState(initial);
   const [isSpinning, setIsSpinning] = useState(isSpin);
+  const [isFirstEntry, setIsFirstEntry] = useState(true);
 
   const startSpinning = () => {
     setIsFirstEntry(false);
@@ -29,20 +32,19 @@ function useSlot({ option, constants }: Props) {
   };
 
   const getSelectedOption = (name: string, num: number) => {
-    const selectedCon = constants.filter(con => {
-      if (con[0] === name) return con[1];
-    })[0][1];
+    const selected = Object.keys(slotOption[name])[num];
 
     setSelected(prev => ({
       ...prev,
-      [name]: selectedCon[num][1],
+      [name]: selected,
     }));
   };
 
-  const initEntryAndSelection = () => {
+  const initEntryStateAndSelection = () => {
     setIsFirstEntry(true);
     setSelected(initial);
   };
+
   return {
     isFirstEntry,
     selected,
@@ -50,7 +52,7 @@ function useSlot({ option, constants }: Props) {
     getSelectedOption,
     stopSpinning,
     startSpinning,
-    initEntryAndSelection,
+    initEntryStateAndSelection,
   };
 }
 export default useSlot;

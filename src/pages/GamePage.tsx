@@ -1,11 +1,7 @@
 import { css } from '@emotion/react';
 import colors from 'libs/style/colors';
 import { responsive } from 'libs/style/mixin';
-import {
-  SLOT_MOVIE_COUNTRY,
-  SLOT_MOVIE_TYPE,
-  SLOT_MOVIE_YEAR,
-} from 'libs/constants/slotOptions';
+import { MOVIE_SLOTOPTION } from 'libs/constants/slotOptions';
 import useSlot from 'libs/hooks/useSlot';
 import useMovieData from 'libs/hooks/useMovieData';
 
@@ -15,37 +11,16 @@ import Text from 'libs/components/Text';
 import Modal from 'libs/components/Modal';
 import Slot from 'libs/components/Slot';
 
-// interface MovieSlot {
-//   country: string;
-//   year: string;
-//   type: string;
-// }
 export default function GamePage() {
-  const COUNTRY = 'country';
-  const YEAR = 'year';
-  const TYPE = 'type';
-
-  const option = { country: '', type: '', year: '' };
-  // const [option, setOption] = useState({
-  //   country: '',
-  //   year: '',
-  //   type: '',
-  // });
-
-  const constants = [
-    [COUNTRY, SLOT_MOVIE_COUNTRY],
-    [YEAR, SLOT_MOVIE_TYPE],
-    [YEAR, SLOT_MOVIE_YEAR],
-  ];
   const {
-    isFirstEntry,
     selected,
+    isFirstEntry,
     isSpinning,
     getSelectedOption,
     startSpinning,
     stopSpinning,
-    initEntryAndSelection,
-  } = useSlot({ option, constants });
+    initEntryStateAndSelection,
+  } = useSlot({ slotOption: MOVIE_SLOTOPTION });
 
   const {
     selectedMovie,
@@ -59,7 +34,7 @@ export default function GamePage() {
   });
 
   const initGame = () => {
-    initEntryAndSelection();
+    initEntryStateAndSelection();
     resetDataAndLoading();
   };
 
@@ -101,60 +76,28 @@ export default function GamePage() {
       ) : null}
 
       <div css={slot.container}>
-        <div css={slot.flexColumn}>
-          <div css={slot.spinningSquare}>
-            <Slot
-              name={COUNTRY}
-              option={SLOT_MOVIE_COUNTRY}
-              isFirstEntry={isFirstEntry}
-              isSpinning={isSpinning}
-              getSelectedOption={getSelectedOption}
-              css={slot.spinningText}
-            />
-          </div>
-          <Button
-            aria-label={COUNTRY}
-            disabled={!isSpinning[COUNTRY]}
-            onClick={stopSpinning(COUNTRY)}
-            css={slot.button}
-          ></Button>
-        </div>
-        <div css={slot.flexColumn}>
-          <div css={slot.spinningSquare}>
-            <Slot
-              name={YEAR}
-              option={SLOT_MOVIE_YEAR}
-              isFirstEntry={isFirstEntry}
-              isSpinning={isSpinning}
-              getSelectedOption={getSelectedOption}
-              css={slot.spinningText}
-            />
-          </div>
-          <Button
-            aria-label={YEAR}
-            disabled={!isSpinning[YEAR]}
-            onClick={stopSpinning(YEAR)}
-            css={slot.button}
-          ></Button>
-        </div>
-        <div css={slot.flexColumn}>
-          <div css={slot.spinningSquare}>
-            <Slot
-              name={TYPE}
-              option={SLOT_MOVIE_TYPE}
-              isFirstEntry={isFirstEntry}
-              isSpinning={isSpinning}
-              getSelectedOption={getSelectedOption}
-              css={slot.spinningText}
-            />
-          </div>
-          <Button
-            aria-label={TYPE}
-            disabled={!isSpinning[TYPE]}
-            onClick={stopSpinning(TYPE)}
-            css={slot.button}
-          ></Button>
-        </div>
+        {Object.entries(MOVIE_SLOTOPTION).map(([name, option]) => {
+          return (
+            <div key={name} css={slot.flexColumn}>
+              <div css={slot.spinningSquare}>
+                <Slot
+                  name={name}
+                  option={option}
+                  isFirstEntry={isFirstEntry}
+                  isSpinning={isSpinning}
+                  getSelectedOption={getSelectedOption}
+                  css={slot.spinningText}
+                />
+              </div>
+              <Button
+                aria-label={name}
+                disabled={!isSpinning[name]}
+                onClick={stopSpinning(name)}
+                css={slot.button}
+              ></Button>
+            </div>
+          );
+        })}
       </div>
     </section>
   );
