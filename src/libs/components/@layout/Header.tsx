@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import Text from 'libs/components/Text';
+import Text from 'libs/components/@common/Text';
 import colors from 'libs/style/colors';
 function Header() {
   return (

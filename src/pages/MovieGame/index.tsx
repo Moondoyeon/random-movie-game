@@ -1,12 +1,11 @@
 import { MOVIE_SLOTOPTION } from 'libs/constants/slotOption';
 import useSlot from 'libs/hooks/useSlot';
 import useMovieData from 'libs/hooks/useMovieData';
-import Button from 'libs/components/Button';
-import Spinner from 'libs/components/Spinner';
-import Text from 'libs/components/Text';
-import Modal from 'libs/components/Modal';
-import Slot from 'libs/components/Slot';
-import { randomResult, slot, startButton } from './style';
+import Button from 'libs/components/@common/Button';
+import Text from 'libs/components/@common/Text';
+import Modal from 'libs/components/@common/BackDrop';
+import Slot from 'libs/components/@common/Slot';
+import { randomResult, slot, startButton } from './gamePage.style';
 
 export default function MovieGamePage() {
   const {
@@ -19,14 +18,7 @@ export default function MovieGamePage() {
     initEntryStateAndSelection,
   } = useSlot({ slotOption: MOVIE_SLOTOPTION });
 
-  const {
-    selectedMovie,
-    type,
-    country,
-    isLoading,
-    isError,
-    resetDataAndLoading,
-  } = useMovieData({
+  const { selectedMovie, type, country, resetDataAndLoading } = useMovieData({
     selected,
   });
 
@@ -45,27 +37,19 @@ export default function MovieGamePage() {
         </Modal>
       )}
 
-      {isLoading && (
-        <Modal whiteBoard>
-          <Spinner />
-        </Modal>
-      )}
-
       {selectedMovie ? (
         <Modal whiteBoard>
           <div css={randomResult.outer}>
             <Text typography="p">뽑기결과</Text>
             <Text typography="h5" css={randomResult.movieNm}>
-              {!isError
-                ? selectedMovie?.movieNm
-                : '랜덤영화를 뽑지 못헀어요 ㅠㅠ'}
+              {selectedMovie?.movieNm}
             </Text>
             <div css={randomResult.bottom}>
               <Text typography="p">
                 #{country} #{selected.year} #{type}
               </Text>
               <Button css={randomResult.initButton} onClick={initGame}>
-                {!isError ? '처음으로' : '다시 시도하기'}
+                처음으로
               </Button>
             </div>
           </div>

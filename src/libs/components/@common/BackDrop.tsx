@@ -6,7 +6,7 @@ interface Props {
   children: React.ReactNode;
   whiteBoard: boolean;
 }
-export default function Modal({ children, whiteBoard }: Props) {
+export default function BackDrop({ children, whiteBoard }: Props) {
   return (
     <div
       css={css`
