@@ -1,12 +1,12 @@
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import reportWebVitals from './reportWebVitals';
 import { Global } from '@emotion/react';
-import { AlertModalProvider } from 'libs/context/AlertModalContext';
+import { BrowserRouter } from 'react-router-dom';
+import { ErrorBoundary } from 'react-error-boundary';
 import App from './App';
 import reset from 'libs/style/reset';
-import reportWebVitals from './reportWebVitals';
-import { ErrorBoundary } from 'react-error-boundary';
 import RootErrorFallback from 'libs/components/@helper/ErrorBoundary/RootErrorFallback';
+import { AlertModalProvider } from 'libs/context/AlertModalContext';
 // import { worker } from 'mock/browser';
 
 // if (process.env.NODE_ENV === 'development') {

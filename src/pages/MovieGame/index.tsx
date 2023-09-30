@@ -1,13 +1,16 @@
 import { MOVIE_SLOTOPTION } from 'libs/constants/slotOption';
 import useSlot from 'libs/hooks/useSlot';
-import useMovieData from 'libs/hooks/useMovieData';
 import Button from 'libs/components/@common/Button';
-import Text from 'libs/components/@common/Text';
-import Modal from 'libs/components/@common/BackDrop';
 import Slot from 'libs/components/@common/Slot';
-import { randomResult, slot, startButton } from './gamePage.style';
+import { slot, startButton } from './gamePage.style';
+import { ErrorBoundary } from 'react-error-boundary';
+import GameResult from 'libs/components/movieGame/GameResult';
+import MovieErrorFallback from 'libs/components/@helper/ErrorBoundary/MovieErrorFallback';
+import { Suspense } from 'react';
+import Loading from 'libs/components/@common/Loading';
+import BackDrop from 'libs/components/@common/BackDrop';
 
-export default function MovieGamePage() {
+function MovieGamePage() {
   const {
     selected,
     isFirstEntry,
@@ -15,46 +18,30 @@ export default function MovieGamePage() {
     getSelectedOption,
     startSpinning,
     stopSpinning,
-    initEntryStateAndSelection,
+    initEntrtyNSelection,
   } = useSlot({ slotOption: MOVIE_SLOTOPTION });
-
-  const { selectedMovie, type, country, resetDataAndLoading } = useMovieData({
-    selected,
-  });
-
-  const initGame = () => {
-    initEntryStateAndSelection();
-    resetDataAndLoading();
-  };
 
   return (
     <section>
       {isFirstEntry && (
-        <Modal whiteBoard={false}>
+        <BackDrop whiteBoard={false}>
           <Button onClick={startSpinning} css={startButton}>
             START
           </Button>
-        </Modal>
+        </BackDrop>
       )}
 
-      {selectedMovie ? (
-        <Modal whiteBoard>
-          <div css={randomResult.outer}>
-            <Text typography="p">뽑기결과</Text>
-            <Text typography="h5" css={randomResult.movieNm}>
-              {selectedMovie?.movieNm}
-            </Text>
-            <div css={randomResult.bottom}>
-              <Text typography="p">
-                #{country} #{selected.year} #{type}
-              </Text>
-              <Button css={randomResult.initButton} onClick={initGame}>
-                처음으로
-              </Button>
-            </div>
-          </div>
-        </Modal>
-      ) : null}
+      <ErrorBoundary
+        FallbackComponent={MovieErrorFallback}
+        onReset={initEntrtyNSelection}
+      >
+        <Suspense fallback={<Loading whiteBoard />}>
+          <GameResult
+            selected={selected}
+            initEntrtyNSelection={initEntrtyNSelection}
+          />
+        </Suspense>
+      </ErrorBoundary>
 
       <div css={slot.container}>
         {Object.entries(MOVIE_SLOTOPTION).map(([name, option]) => {
@@ -83,3 +70,5 @@ export default function MovieGamePage() {
     </section>
   );
 }
+
+export default MovieGamePage;
