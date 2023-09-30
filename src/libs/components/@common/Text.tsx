@@ -4,7 +4,7 @@ interface Props extends HTMLAttributes<HTMLSpanElement> {
   typography?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'p';
   color?: string;
 }
-export default function Text({ typography = 'p', color, ...props }: Props) {
+function Text({ typography = 'p', color, ...props }: Props) {
   return (
     <span
       css={{
@@ -45,3 +45,4 @@ const TYPOGRAPH_VARIANT = {
     fontWeight: 400,
   },
 };
+export default Text;

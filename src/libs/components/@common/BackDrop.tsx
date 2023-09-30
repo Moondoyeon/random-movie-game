@@ -6,7 +6,7 @@ interface Props {
   children: React.ReactNode;
   whiteBoard: boolean;
 }
-export default function BackDrop({ children, whiteBoard }: Props) {
+function BackDrop({ children, whiteBoard }: Props) {
   return (
     <div
       css={css`
@@ -47,3 +47,4 @@ export default function BackDrop({ children, whiteBoard }: Props) {
     </div>
   );
 }
+export default BackDrop;

@@ -1,4 +1,3 @@
-import { FallbackProps } from 'react-error-boundary';
 import { useNavigate } from 'react-router-dom';
 import PageLayout from 'libs/components/@layout/PageLayout';
 import { useAlertModalContext } from 'libs/context/AlertModalContext';
@@ -6,11 +5,9 @@ import { ERROR_MESSAGE } from 'libs/constants/errorMessage';
 import Fallback from './Fallback';
 import { copyEmail } from 'libs/utils';
 import { URL } from 'libs/constants/url';
+import { FallbackProps } from 'libs/types/errorBoundary';
 
-export default function RootErrorFallback({
-  error,
-  resetErrorBoundary,
-}: FallbackProps) {
+function RootErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
   const { showAlert } = useAlertModalContext();
   const navigate = useNavigate();
   const handleCopyButtonClick = () => {
@@ -66,3 +63,5 @@ export default function RootErrorFallback({
     </PageLayout>
   );
 }
+
+export default RootErrorFallback;

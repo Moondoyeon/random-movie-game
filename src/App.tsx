@@ -5,7 +5,7 @@ import PageLayout from 'libs/components/@layout/PageLayout';
 import Loading from 'libs/components/@common/Loading';
 import useCatch404Error from 'libs/hooks/useCatch404Error';
 
-const MovieGame = lazy(() => import('pages/MovieGame/index'));
+const MovieGame = lazy(() => import('pages/MovieGame'));
 
 function App() {
   useCatch404Error();

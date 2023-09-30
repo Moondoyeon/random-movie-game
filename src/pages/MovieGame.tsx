@@ -2,7 +2,7 @@ import { MOVIE_SLOTOPTION } from 'libs/constants/slotOption';
 import useSlot from 'libs/hooks/useSlot';
 import Button from 'libs/components/@common/Button';
 import Slot from 'libs/components/@common/Slot';
-import { slot, startButton } from './gamePage.style';
+import { slot, startButton } from './movieGame.style';
 import { ErrorBoundary } from 'react-error-boundary';
 import GameResult from 'libs/components/movieGame/GameResult';
 import MovieErrorFallback from 'libs/components/@helper/ErrorBoundary/MovieErrorFallback';
@@ -10,7 +10,7 @@ import { Suspense } from 'react';
 import Loading from 'libs/components/@common/Loading';
 import BackDrop from 'libs/components/@common/BackDrop';
 
-function MovieGamePage() {
+function MovieGame() {
   const {
     selected,
     isFirstEntry,
@@ -71,4 +71,4 @@ function MovieGamePage() {
   );
 }
 
-export default MovieGamePage;
+export default MovieGame;

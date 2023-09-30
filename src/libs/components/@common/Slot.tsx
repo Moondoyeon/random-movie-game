@@ -8,7 +8,7 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
   isFirstEntry: boolean;
   getSelectedOption: (name: string, num: number) => void;
 }
-export default function Slot({
+function Slot({
   name,
   option,
   isSpinning,
@@ -57,3 +57,4 @@ export default function Slot({
     </>
   );
 }
+export default Slot;

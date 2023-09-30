@@ -1,7 +1,7 @@
 import { URL } from 'libs/constants/url';
 import { useEffect, useState } from 'react';
 
-export default function useCatch404Error() {
+function useCatch404Error() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
 
   const is404Error = () => {
@@ -15,3 +15,5 @@ export default function useCatch404Error() {
 
   return { is404Error };
 }
+
+export default useCatch404Error;
