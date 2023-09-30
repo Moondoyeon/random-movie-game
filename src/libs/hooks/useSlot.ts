@@ -40,7 +40,7 @@ function useSlot({ slotOption }: Props) {
     }));
   };
 
-  const initEntryStateAndSelection = () => {
+  const initEntrtyNSelection = () => {
     setIsFirstEntry(true);
     setSelected(initial);
   };
@@ -52,7 +52,7 @@ function useSlot({ slotOption }: Props) {
     getSelectedOption,
     stopSpinning,
     startSpinning,
-    initEntryStateAndSelection,
+    initEntrtyNSelection,
   };
 }
 export default useSlot;
