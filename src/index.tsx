@@ -1,12 +1,13 @@
 import ReactDOM from 'react-dom/client';
-import reportWebVitals from './reportWebVitals';
 import { Global } from '@emotion/react';
 import { BrowserRouter } from 'react-router-dom';
 import { ErrorBoundary } from 'react-error-boundary';
 import App from './App';
 import reset from 'libs/style/reset';
+import reportWebVitals from './reportWebVitals';
 import RootErrorFallback from 'libs/components/@helper/ErrorBoundary/RootErrorFallback';
-import { AlertModalProvider } from 'libs/context/AlertModalContext';
+import ModalProvider from 'libs/context/ModalContext';
+
 // import { worker } from 'mock/browser';
 
 // if (process.env.NODE_ENV === 'development') {
@@ -22,11 +23,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <BrowserRouter>
     <Global styles={reset} />
-    <AlertModalProvider>
+    <ModalProvider>
       <ErrorBoundary FallbackComponent={RootErrorFallback}>
         <App />
       </ErrorBoundary>
-    </AlertModalProvider>
+    </ModalProvider>
   </BrowserRouter>,
 );
 

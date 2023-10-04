@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import colors from 'libs/style/colors';
 import { responsive } from 'libs/style/mixin';
 
@@ -8,43 +8,47 @@ interface Props {
 }
 function BackDrop({ children, whiteBoard }: Props) {
   return (
-    <div
-      css={css`
-        width: 100%;
-        height: 100%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: rgba(0, 0, 0, 0.5);
-      `}
-    >
+    <Overlay>
       {whiteBoard ? (
-        <div
-          css={css`
-            position: absolute;
-            background-color: ${colors.white};
-            width: 500px;
-            min-height: 200px;
-            border-radius: 6px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 16px 0;
-            ${responsive('phone')} {
-              width: 400px;
-              top: 20%;
-            }
-          `}
-        >
-          {children}
-        </div>
+        <WhiteBoard>{children}</WhiteBoard>
       ) : (
-        <>{children}</>
+        <Content>{children}</Content>
       )}
-    </div>
+    </Overlay>
   );
 }
 export default BackDrop;
+
+const Overlay = styled.div`
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+`;
+
+const Content = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+`;
+
+const WhiteBoard = styled(Content)`
+  background-color: ${colors.white};
+  width: 500px;
+  min-height: 200px;
+  height: fit-content;
+  border-radius: 6px;
+  padding: 20px 20px;
+  ${responsive('phone')} {
+    width: 400px;
+    top: 20%;
+  }
+`;

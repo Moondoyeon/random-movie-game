@@ -1,18 +1,25 @@
 import { useNavigate } from 'react-router-dom';
 import PageLayout from 'libs/components/@layout/PageLayout';
-import { useAlertModalContext } from 'libs/context/AlertModalContext';
 import { ERROR_MESSAGE } from 'libs/constants/errorMessage';
 import Fallback from './Fallback';
 import { copyEmail } from 'libs/utils';
 import { URL } from 'libs/constants/url';
 import { FallbackProps } from 'libs/types/errorBoundary';
+import useModal from 'libs/hooks/useModal';
 
 function RootErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
-  const { showAlert } = useAlertModalContext();
+  const { openModal } = useModal();
   const navigate = useNavigate();
   const handleCopyButtonClick = () => {
     copyEmail('mmmdo21@gmail.com');
-    showAlert('개발자 이메일이 복사되었어요');
+    openModal({
+      type: 'alert',
+      props: {
+        title: '😀',
+        message: '개발자 이메일이 복사되었어요',
+        btnText: '닫기',
+      },
+    });
   };
 
   if (error.response?.status === 404 || error.message == '404') {
@@ -34,19 +41,29 @@ function RootErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
     error.response?.status === 408 ||
     error.code === 'ECONNABORTED'
   ) {
-    showAlert(ERROR_MESSAGE[408]);
+    openModal({
+      type: 'alert',
+      props: { title: '앗...😰', message: ERROR_MESSAGE[408], btnText: '닫기' },
+    });
+
     resetErrorBoundary();
     return;
   }
 
   if (error.code === 'ERR_NETWORK') {
-    showAlert(ERROR_MESSAGE[998]);
+    openModal({
+      type: 'alert',
+      props: { title: '앗...😰', message: ERROR_MESSAGE[998], btnText: '닫기' },
+    });
     resetErrorBoundary();
     return;
   }
 
   if (error.response?.status >= 500) {
-    showAlert(ERROR_MESSAGE[500]);
+    openModal({
+      type: 'alert',
+      props: { title: '앗...😰', message: ERROR_MESSAGE[500], btnText: '닫기' },
+    });
     resetErrorBoundary();
     return;
   }
