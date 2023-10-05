@@ -9,9 +9,9 @@ export const gameResult = {
     align-items: center;
   `,
   movieNm: css`
-    padding: 20px;
+    padding: 20px 0px;
     text-align: center;
-    width: 100%;
+    width: 90%;
     word-wrap: break-word;
   `,
   bottom: css`
