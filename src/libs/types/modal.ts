@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export type ModalType = 'alert' | 'confirm';
 
-export interface TestModals {
+export interface Modals {
   type: ModalType;
   props?: any;
+  id?: string;
 }
 export interface ModalProps {
   onClose: () => void;

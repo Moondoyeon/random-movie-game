@@ -1,5 +1,5 @@
 import { createPortal } from 'react-dom';
-import { TestModals } from 'libs/types/modal';
+import { Modals } from 'libs/types/modal';
 import { useModalContext } from 'libs/context/ModalContext';
 import useModal from 'libs/hooks/useModal';
 import AlertModal from './AlertModal';
@@ -15,7 +15,7 @@ function CreatePortal() {
   const { hideModal } = useModal();
   let modalElement;
 
-  const renderModal = openedModals.map(({ type, props, id }: TestModals) => {
+  const renderModal = openedModals.map(({ type, props, id }: Modals) => {
     const ModalComponent = type && MODAL_COMPONENTS[type];
     const { onSubmit, ...restProps } = props;
     modalElement = document.getElementById(`${type}-modal`);

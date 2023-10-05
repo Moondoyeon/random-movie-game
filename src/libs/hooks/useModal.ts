@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useModalDispatchContext } from 'libs/context/ModalContext';
-import { TestModals } from 'libs/types/modal';
+import { Modals } from 'libs/types/modal';
 
 function useModal() {
   const { open, close } = useModalDispatchContext();
 
-  const showModal = ({ type, props = null }: TestModals) => {
+  const showModal = ({ type, props = null }: Modals) => {
     open({ type, props });
   };
 
