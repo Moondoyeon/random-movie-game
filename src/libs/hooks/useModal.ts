@@ -5,15 +5,15 @@ import { TestModals } from 'libs/types/modal';
 function useModal() {
   const { open, close } = useModalDispatchContext();
 
-  const openModal = ({ type, props = null }: TestModals) => {
+  const showModal = ({ type, props = null }: TestModals) => {
     open({ type, props });
   };
 
-  const closeModal = () => {
+  const hideModal = () => {
     close();
   };
 
-  return { openModal, closeModal };
+  return { showModal, hideModal };
 }
 
 export default useModal;

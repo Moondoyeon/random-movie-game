@@ -8,11 +8,11 @@ import { FallbackProps } from 'libs/types/errorBoundary';
 import useModal from 'libs/hooks/useModal';
 
 function RootErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
-  const { openModal } = useModal();
+  const { showModal } = useModal();
   const navigate = useNavigate();
   const handleCopyButtonClick = () => {
     copyEmail('mmmdo21@gmail.com');
-    openModal({
+    showModal({
       type: 'alert',
       props: {
         title: '😀',
@@ -41,7 +41,7 @@ function RootErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
     error.response?.status === 408 ||
     error.code === 'ECONNABORTED'
   ) {
-    openModal({
+    showModal({
       type: 'alert',
       props: { title: '앗...😰', message: ERROR_MESSAGE[408], btnText: '닫기' },
     });
@@ -51,7 +51,7 @@ function RootErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
   }
 
   if (error.code === 'ERR_NETWORK') {
-    openModal({
+    showModal({
       type: 'alert',
       props: { title: '앗...😰', message: ERROR_MESSAGE[998], btnText: '닫기' },
     });
@@ -60,7 +60,7 @@ function RootErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
   }
 
   if (error.response?.status >= 500) {
-    openModal({
+    showModal({
       type: 'alert',
       props: { title: '앗...😰', message: ERROR_MESSAGE[500], btnText: '닫기' },
     });

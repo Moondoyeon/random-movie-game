@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createPortal } from 'react-dom';
 import { TestModals } from 'libs/types/modal';
 import { useModalContext } from 'libs/context/ModalContext';
@@ -13,27 +12,24 @@ const MODAL_COMPONENTS = {
 
 function CreatePortal() {
   const openedModals = useModalContext();
-  const { closeModal } = useModal();
+  const { hideModal } = useModal();
   let modalElement;
 
-  const renderModal = openedModals.map(({ type, props }: TestModals, id) => {
+  const renderModal = openedModals.map(({ type, props, id }: TestModals) => {
     const ModalComponent = type && MODAL_COMPONENTS[type];
     const { onSubmit, ...restProps } = props;
     modalElement = document.getElementById(`${type}-modal`);
 
     const handleSubmit = async () => {
       if (typeof onSubmit === 'function') await onSubmit();
-      // closeModal();
-    };
-    const handleClose = () => {
-      closeModal();
+      // hideModal();
     };
 
     return (
       <ModalComponent
         key={id}
         {...restProps}
-        onClose={handleClose}
+        onClose={hideModal}
         onSubmit={handleSubmit}
       />
     );
