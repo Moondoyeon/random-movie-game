@@ -5,7 +5,7 @@ import colors from 'libs/style/colors';
 import Text from 'libs/components/@common/Text';
 import { ModalProps } from 'libs/types/modal';
 
-function AlertModal({ onClose, title, message, btnText }: ModalProps) {
+function AlertModal({ onClose, title, message, btnText = '닫기' }: ModalProps) {
   return (
     <BackDrop whiteBoard>
       <div css={alert.alignColumn}>

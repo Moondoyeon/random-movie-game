@@ -10,13 +10,14 @@ function MovieErrorFallback({
   resetErrorBoundary,
   onReset,
 }: FallbackProps) {
-  if (isRootError(error.response?.status, error.code, error.message)) {
+  if (isRootError(error)) {
     throw error;
   }
   const handleResetError = () => {
     resetErrorBoundary();
     onReset && onReset();
   };
+
   if (!error.response.data)
     return (
       <BackDrop whiteBoard>
@@ -33,6 +34,5 @@ function MovieErrorFallback({
         </div>
       </BackDrop>
     );
-  else throw error;
 }
 export default MovieErrorFallback;
