@@ -17,7 +17,7 @@ function CreatePortal() {
 
   const renderModal = openedModals.map(({ type, props, id }: Modals) => {
     const ModalComponent = type && MODAL_COMPONENTS[type];
-    const { onSubmit, ...restProps } = props;
+    const { onSubmit, onClose, ...restProps } = props;
     modalElement = document.getElementById(`${type}-modal`);
 
     const handleSubmit = async () => {
@@ -25,16 +25,21 @@ function CreatePortal() {
       // hideModal();
     };
 
+    const handleClick = () => {
+      onClose && onClose();
+      hideModal();
+    };
+
     return (
       <ModalComponent
         key={id}
         {...restProps}
-        onClose={hideModal}
+        onClose={handleClick}
         onSubmit={handleSubmit}
       />
     );
   });
-
+  // return renderModal;
   if (modalElement) return createPortal(renderModal, modalElement);
 }
 
