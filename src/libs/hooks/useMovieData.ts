@@ -57,7 +57,7 @@ function useMovieData({ selected }: { selected: Record<string, string> }) {
     setMovieList(null);
   };
 
-  const movies = movieList && movieList?.boxOfficeResult.weeklyBoxOfficeList;
+  const movies = movieList && movieList?.boxOfficeResult?.weeklyBoxOfficeList;
   const selectedMovie = movies && movies[initNum(movies.length)].movieNm;
 
   return {
