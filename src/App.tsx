@@ -1,10 +1,23 @@
+import { Route, Routes } from 'react-router-dom';
+import { Suspense, lazy } from 'react';
+import { URL } from 'libs/constants/url';
+import PageLayout from 'libs/components/@layout/PageLayout';
+import Loading from 'libs/components/@common/Loading';
+import useCatch404Error from 'libs/hooks/useCatch404Error';
+
+const MovieGame = lazy(() => import('pages/MovieGame'));
+
 function App() {
+  useCatch404Error();
+
   return (
-    <>
-      <div className="App">hi</div>
-      <span>hi</span>
-      <a>learn react</a>
-    </>
+    <PageLayout>
+      <Suspense fallback={<Loading whiteBoard={false} />}>
+        <Routes>
+          <Route path={URL.HOME} element={<MovieGame />} />
+        </Routes>
+      </Suspense>
+    </PageLayout>
   );
 }
 
