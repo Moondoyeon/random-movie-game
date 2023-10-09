@@ -85,7 +85,7 @@ export const get500Error: Parameters<typeof rest.get>[1] = (_, res, ctx) => {
   return res(ctx.status(500));
 };
 
-export const getNetworkError: Parameters<typeof rest.get>[1] = (_, res, __) => {
+export const getNetworkError: Parameters<typeof rest.get>[1] = (_, res) => {
   return res.networkError('network');
 };
 
