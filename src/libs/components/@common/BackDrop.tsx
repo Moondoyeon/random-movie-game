@@ -38,9 +38,13 @@ const Content = styled.div`
   transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
+  ${responsive('phone')} {
+    padding: 0 0 0 32px;
+  }
 `;
 
 const WhiteBoard = styled(Content)`
+  position: absolute;
   background-color: ${colors.white};
   width: 500px;
   min-height: 200px;
@@ -48,7 +52,8 @@ const WhiteBoard = styled(Content)`
   border-radius: 6px;
   padding: 20px 20px;
   ${responsive('phone')} {
-    width: 400px;
-    top: 20%;
+    width: 320px;
+    top: 50%;
+    padding: 5px 5px;
   }
 `;
