@@ -17,7 +17,7 @@ export const isTimeOutError = (error: ErrorInfo) =>
   error.message === '408' ||
   error.code === 'ECONNABORTED';
 export const isNetworkError = (error: ErrorInfo) =>
-  error.code === 'ERR_NETWORK';
+  error.code === 'ERR_NETWORK' || error.message === 'Network Error';
 export const isServerError = (error: ErrorInfo) =>
   error.response?.status === 500;
 export const isNotFoundError = (error: ErrorInfo) =>
