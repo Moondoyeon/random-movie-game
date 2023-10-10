@@ -2,6 +2,7 @@ import { css } from '@emotion/react';
 import Button from 'libs/components/@common/Button';
 import Text from 'libs/components/@common/Text';
 import colors from 'libs/style/colors';
+import { responsive } from 'libs/style/mixin';
 import { FallbackProps } from 'libs/types/errorBoundary';
 import { slot } from 'pages/movieGame.style';
 
@@ -27,7 +28,7 @@ function Fallback({
     <div css={fallback.alignSlotCenter}>
       <div css={fallback.slotContainer}>
         <div css={slot.flexColumn}>
-          <div css={slot.spinningSquare}>
+          <div css={fallback.spinningSquare}>
             <div css={fallback.textBox}>
               <div css={fallback.cryingEyes}>
                 <Text typography="h2">ㅠ</Text>
@@ -64,7 +65,19 @@ export const fallback = {
     background-color: ${colors.inverseGrey800};
     padding: 0 36px;
     border-radius: 10px;
+    ${responsive('phone')} {
+      width: 320px;
+    }
   `,
+  spinningSquare: css`
+    width: 240px;
+    height: 280px;
+    background-color: ${colors.inverseGrey600};
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  `,
+
   textBox: css`
     width: 95%;
     height: 100%;
