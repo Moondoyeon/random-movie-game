@@ -39,8 +39,9 @@ function CreatePortal() {
       />
     );
   });
-  // return renderModal;
-  if (modalElement) return createPortal(renderModal, modalElement);
+
+  if (process.env.NODE_ENV === 'test') return renderModal;
+  else return modalElement && createPortal(renderModal, modalElement);
 }
 
 export default CreatePortal;
