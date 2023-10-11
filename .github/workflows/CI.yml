@@ -100,3 +100,18 @@ jobs:
               repo: context.repo.repo,
               pull_number: pull_number,
             })
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy to Vercel Action
+        uses: BetaHuhn/deploy-to-vercel-action@latest
+        with:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN_DEPLOY }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
