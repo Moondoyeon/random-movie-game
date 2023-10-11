@@ -1,3 +1,3 @@
 export default function Test() {
-  return <div>Test입니다입니다</div>;
+  return <div>Test이랑게</div>;
 }
