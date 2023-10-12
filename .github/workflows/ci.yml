@@ -3,6 +3,7 @@ name: CI
 on:
   pull_request:
     branches: ['main']
+    types: [opened, reopened]
 
 jobs:
   # build:
@@ -18,7 +19,7 @@ jobs:
   #     - name: Build
   #       run: yarn build
 
-  #     - name:
+  #     - name: Close PR, if build fails
   #       if: ${{ failure() }}
   #       # 이전 step이 실패한 경우에만 이 step을 실행시키는 syntax
   #       uses: actions/github-script@v6
@@ -53,7 +54,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache Yarn
+        uses: actions/cache@v3
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
       - name: Install dependencies
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn install
 
       - name: Run test
