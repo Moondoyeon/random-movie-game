@@ -9,8 +9,9 @@ export const isRootError = (error: ErrorInfo) =>
   (error.response?.status && error.response?.status >= 500) ||
   error.message === '404' ||
   error.message === '408' ||
-  error.code === 'ECONNABORTED' ||
-  error.code === 'ERR_NETWORK';
+  error.message === 'Network Error' ||
+  error.code === 'ERR_NETWORK' ||
+  error.code === 'ECONNABORTED';
 
 export const isTimeOutError = (error: ErrorInfo) =>
   error.response?.status === 408 ||
