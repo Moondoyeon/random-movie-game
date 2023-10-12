@@ -9,7 +9,6 @@ import MovieErrorFallback from 'libs/components/@helper/ErrorBoundary/MovieError
 import { Suspense } from 'react';
 import Loading from 'libs/components/@common/Loading';
 import BackDrop from 'libs/components/@common/BackDrop';
-import Test from './Test';
 
 function MovieGame() {
   const {
@@ -24,7 +23,6 @@ function MovieGame() {
 
   return (
     <section>
-      <Test />
       {isFirstEntry && (
         <BackDrop whiteBoard={false}>
           <Button onClick={startSpinning} css={startButton}>

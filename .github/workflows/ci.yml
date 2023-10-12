@@ -3,14 +3,11 @@ name: CI
 on:
   pull_request:
     branches: ['main']
-    types: [opened, reopened]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    # strategy:
-    #   matrix:
-    #     node-version: [18.x, 16.x]
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -19,21 +16,8 @@ jobs:
         with:
           node-version: 18.x
           cache: yarn
-      # - name: Get yarn cache directory path
-      #   id: yarn-cache-dir-path
-      #   run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
-
-      # - name: Cache Yarn
-      #   uses: actions/cache@v3
-      #   id: yarn-cache
-      #   with:
-      #     path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-      #     key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-yarn-
 
       - name: Install dependencies
-        # if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn install
 
       - name: Build
@@ -79,21 +63,8 @@ jobs:
         with:
           node-version: 18.x
           cache: yarn
-      # - name: Get yarn cache directory path
-      #   id: yarn-cache-dir-path
-      #   run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
-
-      # - name: Cache Yarn
-      #   uses: actions/cache@v3
-      #   id: yarn-cache
-      #   with:
-      #     path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-      #     key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-yarn-
 
       - name: Install dependencies
-        # if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn install
 
       - name: Run test
