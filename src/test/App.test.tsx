@@ -198,7 +198,8 @@ describe('App test', () => {
       ).toBeInTheDocument();
     });
 
-    user.click(await screen.findByText('닫기'));
+    await waitFor(async () => user.click(await screen.findByText('닫기')));
+
     waitFor(() => {
       expect(screen.findByText(/START/)).toBeInTheDocument();
     });
