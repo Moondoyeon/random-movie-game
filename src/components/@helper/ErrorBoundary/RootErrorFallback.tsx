@@ -1,18 +1,18 @@
-import { useNavigate } from 'react-router-dom';
-import PageLayout from 'libs/components/@layout/PageLayout';
-import { ERROR_MESSAGE } from 'libs/constants/errorMessage';
-import Fallback from './Fallback';
-import { copyEmail } from 'libs/utils';
-import { URL } from 'libs/constants/url';
-import { FallbackProps } from 'libs/types/errorBoundary';
-import useModal from 'libs/hooks/useModal';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import useModal from 'hooks/useModal';
+import PageLayout from 'components/@layout/PageLayout';
+import { ERROR_MESSAGE } from 'constants/errorMessage';
+import { URL } from 'constants/url';
+import { FallbackProps } from 'types/errorBoundary';
+import { copyEmail } from 'utils';
 import {
   isNetworkError,
   isNotFoundError,
   isServerError,
   isTimeOutError,
-} from 'libs/utils/confirmErrorType';
+} from 'utils/confirmErrorType';
+import Fallback from './Fallback';
 
 function RootErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
   const { showModal } = useModal();

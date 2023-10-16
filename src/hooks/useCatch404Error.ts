@@ -1,5 +1,5 @@
-import { URL } from 'libs/constants/url';
 import { useEffect, useState } from 'react';
+import { URL } from 'constants/url';
 
 function useCatch404Error() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);

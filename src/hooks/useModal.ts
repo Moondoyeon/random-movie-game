@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useModalDispatchContext } from 'libs/context/ModalContext';
-import { Modals } from 'libs/types/modal';
+import { useModalDispatchContext } from 'context/ModalContext';
+import { Modals } from 'types/modal';
 
 function useModal() {
   const { open, close } = useModalDispatchContext();

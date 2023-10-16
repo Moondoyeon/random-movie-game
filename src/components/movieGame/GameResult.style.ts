@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import colors from 'libs/style/colors';
+import colors from 'style/colors';
 
 export const gameResult = {
   box: css`

@@ -1,4 +1,4 @@
-import { SlotOptionParams } from 'libs/types/game';
+import { SlotOptionParams } from 'types/game';
 import { getRandomMovieData } from './http';
 export class CacheApi {
   private static movieCacheStorage = 'CACHE_STORAGE_MOVIE';

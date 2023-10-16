@@ -1,5 +1,5 @@
-import { initNum } from 'libs/utils';
 import { HTMLAttributes, useEffect, useState } from 'react';
+import { initNum } from 'utils';
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
   name: string;

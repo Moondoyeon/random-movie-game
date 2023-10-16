@@ -1,7 +1,7 @@
 import { createPortal } from 'react-dom';
-import { Modals } from 'libs/types/modal';
-import { useModalContext } from 'libs/context/ModalContext';
-import useModal from 'libs/hooks/useModal';
+import { Modals } from 'types/modal';
+import { useModalContext } from 'context/ModalContext';
+import useModal from 'hooks/useModal';
 import AlertModal from './AlertModal';
 import ConfirmModal from './ConfirmModal';
 

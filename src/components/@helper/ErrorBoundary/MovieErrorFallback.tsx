@@ -1,9 +1,9 @@
-import BackDrop from 'libs/components/@common/BackDrop';
-import Button from 'libs/components/@common/Button';
-import Text from 'libs/components/@common/Text';
-import { gameResult } from 'libs/components/movieGame/GameResult.style';
-import { FallbackProps } from 'libs/types/errorBoundary';
-import { isRootError } from 'libs/utils/confirmErrorType';
+import BackDrop from 'components/@common/BackDrop';
+import Button from 'components/@common/Button';
+import Text from 'components/@common/Text';
+import { gameResult } from 'components/movieGame/GameResult.style';
+import { FallbackProps } from 'types/errorBoundary';
+import { isRootError } from 'utils/confirmErrorType';
 
 function MovieErrorFallback({
   error,

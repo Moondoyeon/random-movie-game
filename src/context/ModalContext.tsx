@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import CreatePortal from 'libs/components/@helper/Modal/CreatePortal';
-import { ModalType, Modals } from 'libs/types/modal';
 import { ReactNode, createContext, useContext, useMemo, useState } from 'react';
+import CreatePortal from 'components/@helper/Modal/CreatePortal';
+import { Modals } from 'types/modal';
 
 export const ModalContext = createContext<Modals[]>([]);
 export const ModalDispatchContext = createContext({

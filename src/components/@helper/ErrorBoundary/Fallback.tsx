@@ -1,10 +1,10 @@
 import { css } from '@emotion/react';
-import Button from 'libs/components/@common/Button';
-import Text from 'libs/components/@common/Text';
-import colors from 'libs/style/colors';
-import { responsive } from 'libs/style/mixin';
-import { FallbackProps } from 'libs/types/errorBoundary';
+import Button from 'components/@common/Button';
+import Text from 'components/@common/Text';
 import { slot } from 'pages/movieGame.style';
+import colors from 'style/colors';
+import { responsive } from 'style/mixin';
+import { FallbackProps } from 'types/errorBoundary';
 
 interface Props {
   mainText?: string;

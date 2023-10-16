@@ -1,10 +1,10 @@
 import { css } from '@emotion/react';
-import Button from 'libs/components/@common/Button';
-import BackDrop from 'libs/components/@common/BackDrop';
-import colors from 'libs/style/colors';
-import Text from 'libs/components/@common/Text';
+import Button from 'components/@common/Button';
+import BackDrop from 'components/@common/BackDrop';
+import Text from 'components/@common/Text';
+import colors from 'style/colors';
 import { alert } from './AlertModal';
-import { ModalProps } from 'libs/types/modal';
+import { ModalProps } from 'types/modal';
 
 function ConfirmModal({
   onClose,

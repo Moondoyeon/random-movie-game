@@ -1,7 +1,7 @@
-import useMovieData from 'libs/hooks/useMovieData';
+import useMovieData from 'hooks/useMovieData';
 import BackDrop from '../@common/BackDrop';
-import Button from '../@common/Button';
-import Text from '../@common/Text';
+import Button from 'components/@common/Button';
+import Text from 'components/@common/Text';
 import { gameResult } from './GameResult.style';
 
 interface Props {

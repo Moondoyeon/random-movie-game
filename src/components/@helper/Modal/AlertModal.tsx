@@ -1,9 +1,9 @@
 import { css } from '@emotion/react';
-import Button from 'libs/components/@common/Button';
-import BackDrop from 'libs/components/@common/BackDrop';
-import colors from 'libs/style/colors';
-import Text from 'libs/components/@common/Text';
-import { ModalProps } from 'libs/types/modal';
+import Button from 'components/@common/Button';
+import BackDrop from 'components/@common/BackDrop';
+import Text from 'components/@common/Text';
+import colors from 'style/colors';
+import { ModalProps } from 'types/modal';
 
 function AlertModal({ onClose, title, message, btnText = '닫기' }: ModalProps) {
   return (

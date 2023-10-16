@@ -1,7 +1,6 @@
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import { render, screen, waitFor } from '@testing-library/react';
-
 import { rest } from 'msw';
 import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
@@ -15,9 +14,9 @@ import {
 } from 'mock/handlers';
 
 import App from '../App';
-import Loading from 'libs/components/@common/Loading';
-import ModalProvider from 'libs/context/ModalContext';
-import RootErrorFallback from 'libs/components/@helper/ErrorBoundary/RootErrorFallback';
+import Loading from 'components/@common/Loading';
+import ModalProvider from 'context/ModalContext';
+import RootErrorFallback from 'components/@helper/ErrorBoundary/RootErrorFallback';
 
 describe('App test', () => {
   afterEach(() => {

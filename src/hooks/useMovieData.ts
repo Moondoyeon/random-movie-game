@@ -1,11 +1,10 @@
-import { CacheApi } from 'libs/api/Cache';
-import { httpForTest } from 'libs/api/http';
-import { MovieData } from 'libs/types/game';
-import { initNum } from 'libs/utils';
-import { promiseWrapper } from 'libs/utils/promiseWrapper';
-
 import { useEffect, useState } from 'react';
 import { useErrorBoundary } from 'react-error-boundary';
+import { CacheApi } from 'api/Cache';
+import { httpForTest } from 'api/http';
+import { MovieData } from 'types/game';
+import { initNum } from 'utils';
+import { promiseWrapper } from 'utils/promiseWrapper';
 
 function useMovieData({ selected }: { selected: Record<string, string> }) {
   const [movieList, setMovieList] = useState<MovieData | null>(null);

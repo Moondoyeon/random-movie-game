@@ -2,13 +2,13 @@ import ReactDOM from 'react-dom/client';
 import { Global } from '@emotion/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { ErrorBoundary } from 'react-error-boundary';
-import App from './App';
-import reset from 'libs/style/reset';
-import reportWebVitals from './reportWebVitals';
-import RootErrorFallback from 'libs/components/@helper/ErrorBoundary/RootErrorFallback';
-import ModalProvider from 'libs/context/ModalContext';
 import { Suspense } from 'react';
-import Loading from 'libs/components/@common/Loading';
+import reportWebVitals from './reportWebVitals';
+import App from './App';
+import reset from 'style/reset';
+import Loading from 'components/@common/Loading';
+import ModalProvider from 'context/ModalContext';
+import RootErrorFallback from 'components/@helper/ErrorBoundary/RootErrorFallback';
 // import { worker } from 'mock/browser';
 
 // if (process.env.NODE_ENV === 'development') {

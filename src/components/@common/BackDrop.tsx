@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import colors from 'libs/style/colors';
-import { responsive } from 'libs/style/mixin';
+import colors from 'style/colors';
+import { responsive } from 'style/mixin';
 
 interface Props {
   children: React.ReactNode;

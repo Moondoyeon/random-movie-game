@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import { MovieData, SlotOptionParams } from 'libs/types/game';
+import { MovieData, SlotOptionParams } from 'types/game';
 export const axios = Axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
   params: {
