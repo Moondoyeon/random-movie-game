@@ -40,7 +40,7 @@ const reset = css`
         format('truetype');
   }
   body {
-    font-family: Galmuri11, 'Noto Sans KR', sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
     min-width: 320px; // 해당 너비 이하일때, 디자인이 깨지는 것 방지
   }
   button {

@@ -53,6 +53,7 @@ export const slot = {
     }
   `,
   spinningText: css`
+    font-family: Galmuri11;
     padding: 36px 0;
     font-size: 18px;
     color: ${colors.green200};

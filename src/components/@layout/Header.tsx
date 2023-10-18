@@ -8,9 +8,10 @@ function Header() {
         width: 100%;
         background: ${colors.background};
         padding: 20px;
+        font-family: Galmuri11;
       `}
     >
-      <Text typography="h5">random-movie-game</Text>
+      <Text typography="h5">Random Movie Game</Text>
     </div>
   );
 }

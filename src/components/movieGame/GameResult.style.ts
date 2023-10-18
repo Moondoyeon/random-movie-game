@@ -9,6 +9,7 @@ export const gameResult = {
     align-items: center;
   `,
   movieNm: css`
+    font-family: Galmuri11;
     padding: 20px 0px;
     text-align: center;
     width: 90%;
