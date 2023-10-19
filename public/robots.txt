@@ -1,4 +1,6 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Disallow: /
+Allow: /$
+# 사이트의 루트 페이지만 수집 허용으로 설정합니다.
 Sitemap: https://random-game-sigma.vercel.app/sitemap.xml
