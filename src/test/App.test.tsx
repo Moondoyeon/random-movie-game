@@ -101,7 +101,7 @@ describe('App test', () => {
       expect(screen.queryByText(/START/)).toBeInTheDocument();
     });
   });
-  test('404 에러가 발생하면 404 페이지가 나타난다.', async () => {
+  test('404 에러가 발생하면 404 페이지가 나타난다. 버튼을 눌러 진입페이지으로 이동한다', async () => {
     render(
       <Router>
         <ModalProvider>
@@ -127,13 +127,12 @@ describe('App test', () => {
     });
 
     user.click(await screen.findByRole('button'));
-
     waitFor(() => {
       expect(screen.findByText(/START/)).toBeInTheDocument();
     });
   });
 
-  test.skip('500 에러가 발생하면 에러 모달이 나타난다. 닫기버튼을 누르면 첫화면으로 진입한다', async () => {
+  test('500 에러가 발생하면 에러 모달이 나타난다. 닫기버튼을 누르면 진입페이지로 이동한다', async () => {
     // CreatePortal 사용시 Jest가 모달을 인식못함. 분기 후 테스트 중
     render(
       <Router>
@@ -169,7 +168,7 @@ describe('App test', () => {
     });
   });
 
-  test.skip('네트워크 에러가 발생하면 에러 모달이 나타난다.', async () => {
+  test('네트워크 에러가 발생하면 에러 모달이 나타난다.', async () => {
     // CreatePortal 사용시 Jest가 모달을 인식못함. 분기 후 테스트 중
     render(
       <Router>
