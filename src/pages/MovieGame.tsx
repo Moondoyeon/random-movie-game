@@ -1,14 +1,14 @@
-import { MOVIE_SLOTOPTION } from 'libs/constants/slotOption';
-import useSlot from 'libs/hooks/useSlot';
-import Button from 'libs/components/@common/Button';
-import Slot from 'libs/components/@common/Slot';
-import { slot, startButton } from './movieGame.style';
-import { ErrorBoundary } from 'react-error-boundary';
-import GameResult from 'libs/components/movieGame/GameResult';
-import MovieErrorFallback from 'libs/components/@helper/ErrorBoundary/MovieErrorFallback';
 import { Suspense } from 'react';
-import Loading from 'libs/components/@common/Loading';
-import BackDrop from 'libs/components/@common/BackDrop';
+import { ErrorBoundary } from 'react-error-boundary';
+import useSlot from 'hooks/useSlot';
+import Button from 'components/@common/Button';
+import Slot from 'components/@common/Slot';
+import GameResult from 'components/movieGame/GameResult';
+import Loading from 'components/@common/Loading';
+import BackDrop from 'components/@common/BackDrop';
+import MovieErrorFallback from 'components/@helper/ErrorBoundary/MovieErrorFallback';
+import { MOVIE_SLOTOPTION } from 'constants/slotOption';
+import { slot, startButton } from './movieGame.style';
 
 function MovieGame() {
   const {

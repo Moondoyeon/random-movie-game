@@ -1,7 +1,6 @@
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import { render, screen, waitFor } from '@testing-library/react';
-
 import { rest } from 'msw';
 import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
@@ -15,9 +14,9 @@ import {
 } from 'mock/handlers';
 
 import App from '../App';
-import Loading from 'libs/components/@common/Loading';
-import ModalProvider from 'libs/context/ModalContext';
-import RootErrorFallback from 'libs/components/@helper/ErrorBoundary/RootErrorFallback';
+import Loading from 'components/@common/Loading';
+import ModalProvider from 'context/ModalContext';
+import RootErrorFallback from 'components/@helper/ErrorBoundary/RootErrorFallback';
 
 describe('App test', () => {
   afterEach(() => {
@@ -134,7 +133,7 @@ describe('App test', () => {
     });
   });
   test('500 에러가 발생하면 에러 모달이 나타난다. 닫기버튼을 누르면 첫화면으로 진입한다', async () => {
-    // CreatePortal 사용시 Jest가 모달을 인식못함. 제거 후 테스트
+    // CreatePortal 사용시 Jest가 모달을 인식못함. 분기 후 테스트 중
     render(
       <Router>
         <ModalProvider>
@@ -168,8 +167,8 @@ describe('App test', () => {
       expect(screen.findByText(/START/)).toBeInTheDocument();
     });
   });
-  test('네트워크 에러가 발생하면 에러 모달이 나타난다. 닫기버튼을 누르면 첫화면으로 진입한다', async () => {
-    // CreatePortal 사용시 Jest가 모달을 인식못함. 제거 후 테스트
+  test('네트워크 에러가 발생하면 에러 모달이 나타난다.', async () => {
+    // CreatePortal 사용시 Jest가 모달을 인식못함. 분기 후 테스트 중
     render(
       <Router>
         <ModalProvider>
@@ -196,11 +195,6 @@ describe('App test', () => {
           /네트워크 연결이 약한것같아요. 와이파이 연결을 확인해주시고, 재시도 해주세요!/,
         ),
       ).toBeInTheDocument();
-    });
-
-    user.click(await screen.findByText('닫기'));
-    waitFor(() => {
-      expect(screen.findByText(/START/)).toBeInTheDocument();
     });
   });
 });

@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
-import colors from 'libs/style/colors';
-import { responsive } from 'libs/style/mixin';
+import { responsive } from 'style/mixin';
+import colors from 'style/colors';
 
 export const startButton = css`
   font-family: Galmuri11;
@@ -53,6 +53,7 @@ export const slot = {
     }
   `,
   spinningText: css`
+    font-family: Galmuri11;
     padding: 36px 0;
     font-size: 18px;
     color: ${colors.green200};
