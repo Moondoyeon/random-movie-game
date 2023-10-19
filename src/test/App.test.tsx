@@ -193,7 +193,7 @@ describe('App test', () => {
     await waitFor(() => {
       expect(
         screen.queryByText(
-          /네트워크 연결이 약한것같아요. 와이파이 연결을 확인해주시고, 재시도 해주세요 실패해야하는 네트워크 에러 테스트!/,
+          /네트워크 연결이 약한것같아요. 와이파이 연결을 확인해주시고, 재시도 해주세요!/,
         ),
       ).toBeInTheDocument();
     });
