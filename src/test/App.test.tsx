@@ -168,7 +168,7 @@ describe('App test', () => {
     });
   });
 
-  test.skip('네트워크 에러가 발생하면 에러 모달이 나타난다.', async () => {
+  test('네트워크 에러가 발생하면 에러 모달이 나타난다.', async () => {
     // CreatePortal 사용시 Jest가 모달을 인식못함. 분기 후 테스트 중
     render(
       <Router>
@@ -193,7 +193,7 @@ describe('App test', () => {
     await waitFor(() => {
       expect(
         screen.queryByText(
-          /네트워크 연결이 약한것같아요. 와이파이 연결을 확인해주시고, 재시도 해주세요!/,
+          /네트워크 연결이 약한것같아요. 와이파이 연결을 확인해주시고, 재시도 해주세요 실패해야하는 네트워크 에러 테스트!/,
         ),
       ).toBeInTheDocument();
     });
