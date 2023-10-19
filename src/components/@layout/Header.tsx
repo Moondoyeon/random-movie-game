@@ -11,7 +11,7 @@ function Header() {
         font-family: Galmuri11;
       `}
     >
-      <Text typography="h5">Random Movie Game</Text>
+      <Text typography="h5">랜덤영화뽑기</Text>
     </div>
   );
 }
