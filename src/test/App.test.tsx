@@ -122,12 +122,11 @@ describe('App test', () => {
 
     await waitFor(() => {
       expect(
-        screen.queryByText(/존재하지 않는 페이지에요 실패해야하는 404 테스트/),
+        screen.queryByText(/존재하지 않는 페이지에요/),
       ).toBeInTheDocument();
     });
 
     user.click(await screen.findByRole('button'));
-
     waitFor(() => {
       expect(screen.findByText(/START/)).toBeInTheDocument();
     });
