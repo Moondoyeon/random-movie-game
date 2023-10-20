@@ -4,6 +4,8 @@ User-agent: *
 Disallow: /
 User-agent: Yeti
 User-agent: Googlebot
+User-agent: bingbot
+User-agent: DuckDuckBot
+User-agent: archive.org_bot
 Allow: /
-
 Sitemap: https://random-game-sigma.vercel.app/sitemap.xml
