@@ -41,7 +41,7 @@ export const slot = {
   spinningSquare: css`
     width: 240px;
     height: 280px;
-    background-color: ${colors.inverseGrey600};
+    background-color: ${colors.inverseGrey200};
     display: flex;
     flex-direction: column;
     align-items: center;

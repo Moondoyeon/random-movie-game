@@ -8,12 +8,12 @@ import { ModalProps } from 'types/modal';
 function AlertModal({ onClose, title, message, btnText = '닫기' }: ModalProps) {
   return (
     <BackDrop whiteBoard>
-      <div css={alert.alignColumn}>
+      <div css={alert.alignColumn} role="dialog" tabIndex={0}>
         <Text typography="h4">{title}</Text>
         <Text typography="p" css={alert.msg}>
           {message}
         </Text>
-        <Button onClick={onClose} css={alert.button}>
+        <Button onClick={onClose} css={alert.button} aria-label={btnText}>
           {btnText}
         </Button>
       </div>

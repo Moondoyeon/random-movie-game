@@ -27,7 +27,11 @@ function MovieErrorFallback({
             앗! 랜덤영화를 뽑지 못헀어요 ㅠㅠ
           </Text>
           <div css={gameResult.bottom}>
-            <Button css={gameResult.initButton} onClick={handleResetError}>
+            <Button
+              css={gameResult.initButton}
+              onClick={handleResetError}
+              aria-label="다시뽑기"
+            >
               다시 뽑기
             </Button>
           </div>
