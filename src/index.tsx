@@ -2,13 +2,12 @@ import ReactDOM from 'react-dom/client';
 import { Global } from '@emotion/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { ErrorBoundary } from 'react-error-boundary';
-import { Suspense } from 'react';
+import { Suspense, lazy } from 'react';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
 import reset from 'style/reset';
 import Loading from 'components/@common/Loading';
 import ModalProvider from 'context/ModalContext';
-import RootErrorFallback from 'components/@helper/ErrorBoundary/RootErrorFallback';
 // import { worker } from 'mock/browser';
 
 // if (process.env.NODE_ENV === 'development') {
@@ -17,6 +16,9 @@ import RootErrorFallback from 'components/@helper/ErrorBoundary/RootErrorFallbac
 //   });
 // }
 
+const RootErrorFallback = lazy(
+  () => import('components/@helper/ErrorBoundary/RootErrorFallback'),
+);
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
@@ -39,4 +41,4 @@ root.render(
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+reportWebVitals(console.log);

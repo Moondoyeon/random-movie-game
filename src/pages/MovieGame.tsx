@@ -1,14 +1,17 @@
-import { Suspense } from 'react';
+import { Suspense, lazy } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import useSlot from 'hooks/useSlot';
 import Button from 'components/@common/Button';
 import Slot from 'components/@common/Slot';
-import GameResult from 'components/movieGame/GameResult';
-import Loading from 'components/@common/Loading';
 import BackDrop from 'components/@common/BackDrop';
-import MovieErrorFallback from 'components/@helper/ErrorBoundary/MovieErrorFallback';
 import { MOVIE_SLOTOPTION } from 'constants/slotOption';
 import { slot, startButton } from './movieGame.style';
+
+const GameResult = lazy(() => import('components/movieGame/GameResult'));
+const Loading = lazy(() => import('components/@common/Loading'));
+const MovieErrorFallback = lazy(
+  () => import('components/@helper/ErrorBoundary/MovieErrorFallback'),
+);
 
 function MovieGame() {
   const {
@@ -25,11 +28,7 @@ function MovieGame() {
     <>
       {isFirstEntry && (
         <BackDrop whiteBoard={false}>
-          <Button
-            onClick={startSpinning}
-            css={startButton}
-            // aria-label="게임시작"
-          >
+          <Button onClick={startSpinning} css={startButton}>
             START
           </Button>
         </BackDrop>
