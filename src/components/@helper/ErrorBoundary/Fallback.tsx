@@ -79,6 +79,7 @@ export const fallback = {
   `,
 
   textBox: css`
+    font-family: Galmuri11;
     width: 95%;
     height: 100%;
     display: flex;

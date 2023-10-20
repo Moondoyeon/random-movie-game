@@ -31,6 +31,7 @@ export const alert = {
     width: 450px;
   `,
   msg: css`
+    font-family: Galmuri11;
     margin: 20px 0px;
     font-size: 20px;
   `,

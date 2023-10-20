@@ -1,8 +1,9 @@
 # https://www.robotstxt.org/robotstxt.html
+# 다른 검색엔진의 로봇에 대하여 수집을 허용하지 않고 네이버, 구글 검색로봇만 수집 허용으로 설정합니다.
 User-agent: *
 Disallow: /
 User-agent: Yeti
 User-agent: Googlebot
 Allow: /
-다른 검색엔진의 로봇에 대하여 수집을 허용하지 않고 네이버, 구글 검색로봇만 수집 허용으로 설정합니다.
+
 Sitemap: https://random-game-sigma.vercel.app/sitemap.xml
