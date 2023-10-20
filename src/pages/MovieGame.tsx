@@ -22,28 +22,20 @@ function MovieGame() {
   } = useSlot({ slotOption: MOVIE_SLOTOPTION });
 
   return (
-    <section>
+    <>
       {isFirstEntry && (
         <BackDrop whiteBoard={false}>
-          <Button onClick={startSpinning} css={startButton}>
+          <Button
+            onClick={startSpinning}
+            css={startButton}
+            // aria-label="게임시작"
+          >
             START
           </Button>
         </BackDrop>
       )}
 
-      <ErrorBoundary
-        FallbackComponent={MovieErrorFallback}
-        onReset={initEntrtyNSelection}
-      >
-        <Suspense fallback={<Loading whiteBoard />}>
-          <GameResult
-            selected={selected}
-            initEntrtyNSelection={initEntrtyNSelection}
-          />
-        </Suspense>
-      </ErrorBoundary>
-
-      <div css={slot.container}>
+      <section css={slot.container}>
         {Object.entries(MOVIE_SLOTOPTION).map(([name, option]) => {
           return (
             <div key={name} css={slot.flexColumn}>
@@ -66,8 +58,20 @@ function MovieGame() {
             </div>
           );
         })}
-      </div>
-    </section>
+      </section>
+
+      <ErrorBoundary
+        FallbackComponent={MovieErrorFallback}
+        onReset={initEntrtyNSelection}
+      >
+        <Suspense fallback={<Loading whiteBoard />}>
+          <GameResult
+            selected={selected}
+            initEntrtyNSelection={initEntrtyNSelection}
+          />
+        </Suspense>
+      </ErrorBoundary>
+    </>
   );
 }
 

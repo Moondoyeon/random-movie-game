@@ -95,7 +95,7 @@ describe('App test', () => {
       { timeout: 10000 },
     );
 
-    user.click(await screen.findByText(/처음으로/));
+    user.click(await screen.findByText(/다시뽑기/));
 
     await waitFor(() => {
       expect(screen.queryByText(/START/)).toBeInTheDocument();

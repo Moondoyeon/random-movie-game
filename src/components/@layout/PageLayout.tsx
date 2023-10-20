@@ -4,9 +4,9 @@ import Header from './Header';
 
 function PageLayout({ children }: { children: ReactNode }) {
   return (
-    <>
+    <section>
       <Header />
-      <div
+      <main
         css={css`
           display: flex;
           justify-content: center;
@@ -14,8 +14,8 @@ function PageLayout({ children }: { children: ReactNode }) {
         `}
       >
         {children}
-      </div>
-    </>
+      </main>
+    </section>
   );
 }
 

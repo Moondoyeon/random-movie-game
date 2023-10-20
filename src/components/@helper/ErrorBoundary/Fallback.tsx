@@ -9,6 +9,7 @@ import { FallbackProps } from 'types/errorBoundary';
 interface Props {
   mainText?: string;
   subText: string;
+  btnAriaLabel: string;
   onClick?: () => void;
 }
 
@@ -18,6 +19,7 @@ function Fallback({
   mainText,
   subText,
   onClick,
+  btnAriaLabel,
 }: FallbackProps & Props) {
   const errorName = error.name === 'Error' ? '' : error.name;
   const handleButtonClick = () => {
@@ -40,7 +42,11 @@ function Fallback({
               <Text typography="p">{subText}</Text>
             </div>
           </div>
-          <Button css={slot.button} onClick={handleButtonClick} />
+          <Button
+            css={slot.button}
+            onClick={handleButtonClick}
+            aria-label={btnAriaLabel}
+          />
         </div>
       </div>
     </div>

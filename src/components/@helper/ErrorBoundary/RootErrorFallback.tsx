@@ -74,6 +74,7 @@ function RootErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
           resetErrorBoundary={resetErrorBoundary}
           mainText={ERROR_MESSAGE[404]}
           subText="아래 버튼을 눌러 게임페이지로 돌아가세요"
+          btnAriaLabel="메인 페이지로 이동"
           onClick={() => navigate(URL.HOME)}
         />
       </PageLayout>
@@ -87,6 +88,7 @@ function RootErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
         resetErrorBoundary={resetErrorBoundary}
         mainText={ERROR_MESSAGE[999]}
         subText="아래 버튼을 누르면 개발자 이메일이 복사돼요. 문제 상황을 알려주시면 소정의 선물을 드립니다."
+        btnAriaLabel="개발자 이메일 복사"
         onClick={handleCopyButtonClick}
       />
     </PageLayout>
