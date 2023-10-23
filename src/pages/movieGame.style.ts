@@ -4,7 +4,6 @@ import colors from 'style/colors';
 
 export const startButton = css`
   font-family: Galmuri11;
-  letter-spacing: 30px;
   cursor: pointer;
   color: ${colors.white};
   font-size: 65px;

@@ -38,9 +38,6 @@ const Content = styled.div`
   transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
-  ${responsive('phone')} {
-    padding: 0 0 0 32px;
-  }
 `;
 
 const WhiteBoard = styled(Content)`

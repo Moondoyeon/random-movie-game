@@ -24,7 +24,7 @@ describe('App test', () => {
   });
   const user = userEvent.setup();
 
-  test('"START" 버튼을 누르면 "슬롯" 버튼이 활성화 된다', async () => {
+  test('"S T A R T" 버튼을 누르면 "슬롯" 버튼이 활성화 된다', async () => {
     render(
       <Router>
         <App />
@@ -32,12 +32,12 @@ describe('App test', () => {
     );
 
     await waitFor(() => {
-      expect(screen.queryByText(/START/)).toBeInTheDocument();
+      expect(screen.queryByText(/S T A R T/)).toBeInTheDocument();
     });
-    user.click(await screen.findByText(/START/));
+    user.click(await screen.findByText(/S T A R T/));
 
     await waitFor(() => {
-      expect(screen.queryByText(/START/)).not.toBeInTheDocument();
+      expect(screen.queryByText(/S T A R T/)).not.toBeInTheDocument();
     });
 
     const slotButton1 = screen.queryByRole('button', {
@@ -62,9 +62,9 @@ describe('App test', () => {
       </Router>,
     );
     await waitFor(() => {
-      expect(screen.queryByText(/START/)).toBeInTheDocument();
+      expect(screen.queryByText(/S T A R T/)).toBeInTheDocument();
     });
-    user.click(await screen.findByText(/START/));
+    user.click(await screen.findByText(/S T A R T/));
     user.click(await screen.findByRole('button', { name: 'country' }));
     user.click(await screen.findByRole('button', { name: 'type' }));
     user.click(await screen.findByRole('button', { name: 'year' }));
@@ -81,9 +81,9 @@ describe('App test', () => {
     );
 
     await waitFor(() => {
-      expect(screen.queryByText(/START/)).toBeInTheDocument();
+      expect(screen.queryByText(/S T A R T/)).toBeInTheDocument();
     });
-    user.click(screen.getByText(/START/));
+    user.click(screen.getByText(/S T A R T/));
     user.click(await screen.findByRole('button', { name: 'country' }));
     user.click(await screen.findByRole('button', { name: 'type' }));
     user.click(await screen.findByRole('button', { name: 'year' }));
@@ -98,7 +98,7 @@ describe('App test', () => {
     user.click(await screen.findByText(/다시뽑기/));
 
     await waitFor(() => {
-      expect(screen.queryByText(/START/)).toBeInTheDocument();
+      expect(screen.queryByText(/S T A R T/)).toBeInTheDocument();
     });
   });
   test('404 에러가 발생하면 404 페이지가 나타난다. 버튼을 눌러 진입페이지으로 이동한다', async () => {
@@ -115,7 +115,7 @@ describe('App test', () => {
     );
     server.use(rest.get(`${process.env.REACT_APP_BASE_URL}`, get404Error));
 
-    user.click(await screen.findByText(/START/));
+    user.click(await screen.findByText(/S T A R T/));
     user.click(await screen.findByRole('button', { name: 'country' }));
     user.click(await screen.findByRole('button', { name: 'type' }));
     user.click(await screen.findByRole('button', { name: 'year' }));
@@ -128,7 +128,7 @@ describe('App test', () => {
 
     // user.click(await screen.findByRole('button'));
     // waitFor(() => {
-    //   expect(screen.findByText(/START/)).toBeInTheDocument();
+    //   expect(screen.findByText(/S T A R T/)).toBeInTheDocument();
     // });
   });
 
@@ -148,7 +148,7 @@ describe('App test', () => {
 
     server.use(rest.get(`${process.env.REACT_APP_BASE_URL}`, get500Error));
 
-    user.click(await screen.findByText(/START/));
+    user.click(await screen.findByText(/S T A R T/));
 
     user.click(await screen.findByRole('button', { name: 'country' }));
     user.click(await screen.findByRole('button', { name: 'type' }));
@@ -164,7 +164,7 @@ describe('App test', () => {
 
     // user.click(await screen.findByText('닫기'));
     // waitFor(() => {
-    //   expect(screen.findByText(/START/)).toBeInTheDocument();
+    //   expect(screen.findByText(/S T A R T/)).toBeInTheDocument();
     // });
   });
 
@@ -184,7 +184,7 @@ describe('App test', () => {
 
     server.use(rest.get(`${process.env.REACT_APP_BASE_URL}`, getNetworkError));
 
-    user.click(await screen.findByText(/START/));
+    user.click(await screen.findByText(/S T A R T/));
 
     user.click(await screen.findByRole('button', { name: 'country' }));
     user.click(await screen.findByRole('button', { name: 'type' }));

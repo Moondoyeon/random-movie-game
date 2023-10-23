@@ -10,7 +10,6 @@ export const gameResult = {
     align-items: center;
     .result {
       font-size: 20px;
-      font-weight: 400;
       ${responsive('phone')} {
         font-size: 16px;
       }
@@ -18,12 +17,14 @@ export const gameResult = {
   `,
   movieNm: css`
     font-family: Galmuri11;
-    padding: 20px 0px;
+    padding: 20px 10px;
+    margin: 10px 0;
     text-align: center;
     width: 90%;
     word-wrap: break-word;
-    font-weight: 800;
     font-size: 30px;
+    color: ${colors.green200};
+    background-color: ${colors.inverseGrey200};
     ${responsive('phone')} {
       font-size: 22px;
     }
@@ -35,7 +36,7 @@ export const gameResult = {
     align-items: center;
   `,
   initButton: css`
-    background-color: ${colors.grey200};
+    background-color: ${colors.inverseGrey800};
     padding: 10px 16px;
     border-radius: 6px;
   `,

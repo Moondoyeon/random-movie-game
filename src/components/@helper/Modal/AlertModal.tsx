@@ -33,12 +33,12 @@ export const alert = {
   msg: css`
     font-family: Galmuri11;
     margin: 20px 0px;
-    font-size: 20px;
+    font-size: 18px;
   `,
   button: css`
-    width: 100%;
+    width: 85%;
     padding: 5px 0;
     background-color: ${colors.grey200};
-    font-size: 20px;
+    font-size: 16px;
   `,
 };

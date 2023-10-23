@@ -4,16 +4,16 @@ import useSlot from 'hooks/useSlot';
 import Button from 'components/@common/Button';
 import Slot from 'components/@common/Slot';
 import BackDrop from 'components/@common/BackDrop';
+import GameResult from 'components/movieGame/GameResult';
 import { MOVIE_SLOTOPTION } from 'constants/slotOption';
 import { slot, startButton } from './movieGame.style';
+import Loading from 'components/@common/Loading';
 
-const GameResult = lazy(() => import('components/movieGame/GameResult'));
-const Loading = lazy(() => import('components/@common/Loading'));
 const MovieErrorFallback = lazy(
   () => import('components/@helper/ErrorBoundary/MovieErrorFallback'),
 );
 
-function MovieGame() {
+function MovieGamePage() {
   const {
     selected,
     isFirstEntry,
@@ -29,7 +29,7 @@ function MovieGame() {
       {isFirstEntry && (
         <BackDrop whiteBoard={false}>
           <Button onClick={startSpinning} css={startButton}>
-            START
+            S T A R T
           </Button>
         </BackDrop>
       )}
@@ -59,19 +59,19 @@ function MovieGame() {
         })}
       </section>
 
-      <ErrorBoundary
-        FallbackComponent={MovieErrorFallback}
-        onReset={initEntrtyNSelection}
-      >
-        <Suspense fallback={<Loading whiteBoard />}>
+      <Suspense fallback={<Loading whiteBoard />}>
+        <ErrorBoundary
+          FallbackComponent={MovieErrorFallback}
+          onReset={initEntrtyNSelection}
+        >
           <GameResult
             selected={selected}
             initEntrtyNSelection={initEntrtyNSelection}
           />
-        </Suspense>
-      </ErrorBoundary>
+        </ErrorBoundary>
+      </Suspense>
     </>
   );
 }
 
-export default MovieGame;
+export default MovieGamePage;
