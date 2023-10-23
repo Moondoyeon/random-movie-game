@@ -1,10 +1,11 @@
 {
-  "name": "Random Movie Game",
-  "short_name": "Random Movie",
+  "id": ".",
+  "name": "랜덤영화뽑기",
+  "short_name": "랜덤영화뽑기",
   "icons": [
     {
       "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "sizes": "48x48",
       "type": "image/x-icon"
     },
     {
