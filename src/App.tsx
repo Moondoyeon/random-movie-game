@@ -1,18 +1,21 @@
 import { Route, Routes } from 'react-router-dom';
-import { lazy } from 'react';
+import { Suspense, lazy } from 'react';
 import { URL } from 'constants/url';
 import PageLayout from 'components/@layout/PageLayout';
 import useCatch404Error from 'hooks/useCatch404Error';
+import Loading from 'components/@common/Loading';
 
-const MovieGame = lazy(() => import('pages/MovieGame'));
+const MovieGamePage = lazy(() => import('pages/MovieGamePage'));
 
 function App() {
   useCatch404Error();
   return (
     <PageLayout>
-      <Routes>
-        <Route path={URL.HOME} element={<MovieGame />} />
-      </Routes>
+      <Suspense fallback={<Loading whiteBoard={false} />}>
+        <Routes>
+          <Route path={URL.HOME} element={<MovieGamePage />} />
+        </Routes>
+      </Suspense>
     </PageLayout>
   );
 }
