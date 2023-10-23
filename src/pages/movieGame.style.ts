@@ -9,7 +9,7 @@ export const startButton = css`
   font-size: 65px;
   font-weight: 700;
   ${responsive('phone')} {
-    font-size: 40px;
+    font-size: 32px;
   }
 `;
 
