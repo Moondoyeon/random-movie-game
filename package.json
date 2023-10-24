@@ -1,5 +1,9 @@
 {
   "name": "random-movie-game",
+  "author": {
+    "name": "moondoyeon",
+    "email": "mmmdo21@gmail.com"
+  },
   "version": "0.1.0",
   "private": true,
   "dependencies": {

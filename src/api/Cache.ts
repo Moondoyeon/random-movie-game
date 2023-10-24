@@ -7,12 +7,6 @@ export class CacheApi {
   private static X_Fetch_Response_Time = 'X-Fetch-Response-Time';
 
   static async getMovieData(params: SlotOptionParams) {
-    // const paramsForCache = {
-    //   targetDt: '20200516',
-    //   multiMovieYn: 'N',
-    //   repNationCd: 'K',
-    // };
-    // params = paramsForCache;
     const url = `${this.baseUrl}?${this.defaultParams}&targetDt=${params.targetDt}&repNationCd=${params.repNationCd}&multiMovieYn=${params.multiMovieYn}`;
     const cache = await caches.open(this.movieCacheStorage);
     const cachedResponse = await cache.match(url);
@@ -48,7 +42,6 @@ export class CacheApi {
   }
 
   private static async isCacheExpired(cachedResponse: Response | undefined) {
-    // const shortForCache = 1000 * 3;
     const ONE_HOUR = 1000 * 60 * 60;
     const today = new Date().getTime();
 

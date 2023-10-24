@@ -17,6 +17,9 @@ import Fallback from './Fallback';
 function RootErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
   const { showModal } = useModal();
   const navigate = useNavigate();
+  const handleMoveToHomePage = () => {
+    navigate(URL.HOME);
+  };
   const handleCopyButtonClick = () => {
     copyEmail('mmmdo21@gmail.com');
     showModal({
@@ -75,7 +78,7 @@ function RootErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
           mainText={ERROR_MESSAGE[404]}
           subText="아래 버튼을 눌러 게임페이지로 돌아가세요"
           btnAriaLabel="메인 페이지로 이동"
-          onClick={() => navigate(URL.HOME)}
+          onClick={handleMoveToHomePage}
         />
       </PageLayout>
     );

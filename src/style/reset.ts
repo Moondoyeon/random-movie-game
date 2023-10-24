@@ -13,8 +13,8 @@ const reset = css`
     font-family: 'Galmuri11';
     src:
       local('Galmuri11 Regular'),
-      url('subset-Galmuri11-Regular.woff2') format('woff2'),
-      url('subset-Galmuri11-Regular.woff') format('woff');
+      url('fonts/subset-Galmuri11-Regular.woff2') format('woff2'),
+      url('fonts/subset-Galmuri11-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -24,8 +24,8 @@ const reset = css`
     font-family: 'Galmuri11';
     src:
       local('Galmuri11 Bold'),
-      url('subset-Galmuri11-Bold.woff2') format('woff2'),
-      url('subset-Galmuri11-Bold.woff') format('woff');
+      url('fonts/subset-Galmuri11-Bold.woff2') format('woff2'),
+      url('fonts/subset-Galmuri11-Bold.woff') format('woff');
     font-weight: bold;
     font-style: normal;
     font-display: swap;
