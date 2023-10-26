@@ -25,7 +25,7 @@ function MovieGamePage() {
   } = useSlot({ slotOption: MOVIE_SLOTOPTION });
 
   return (
-    <>
+    <section>
       {isFirstEntry && (
         <BackDrop whiteBoard={false}>
           <Button onClick={startSpinning} css={startButton}>
@@ -70,7 +70,7 @@ function MovieGamePage() {
           />
         </ErrorBoundary>
       </Suspense>
-    </>
+    </section>
   );
 }
 
