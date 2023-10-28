@@ -1,7 +1,6 @@
 import { AxiosResponseHeaders } from 'axios';
-
-export type SelectedOption = 'country' | 'year' | 'type';
-export interface SlotOptionParams {
+export type MovieSlotOption = 'country' | 'year' | 'type';
+export interface MovieApiParams {
   targetDt: string;
   multiMovieYn: string;
   repNationCd: string;
@@ -28,6 +27,24 @@ export interface Movie {
 }
 export interface MovieData {
   headers: AxiosResponseHeaders;
+  boxOfficeResult: {
+    boxofficeType: string;
+    weeklyBoxOfficeList: Movie[];
+    showRange: string;
+    yearWeekTime: string;
+  };
+}
+
+export interface MovieApiResponse {
+  headers: AxiosResponseHeaders;
+  data: MovieList;
+  request: XMLHttpRequest;
+  status: number;
+  statusText: string;
+  config: unknown;
+}
+
+export interface MovieList {
   boxOfficeResult: {
     boxofficeType: string;
     weeklyBoxOfficeList: Movie[];

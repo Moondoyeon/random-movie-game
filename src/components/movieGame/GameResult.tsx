@@ -1,7 +1,6 @@
 import useMovieData from 'hooks/useMovieData';
 import BackDrop from '../@common/BackDrop';
 import Button from 'components/@common/Button';
-import Text from 'components/@common/Text';
 import { gameResult } from './GameResult.style';
 import { parseSeletedOption } from 'utils';
 
@@ -24,19 +23,12 @@ function GameResult({ selected, initEntrtyNSelection }: Props) {
     return (
       <BackDrop whiteBoard>
         <section css={gameResult.box} role="dialog" tabIndex={0}>
-          <Text typography="h3" className="result">
-            뽑기결과
-          </Text>
-          <Text typography="p" css={gameResult.movieNm}>
-            {selectedMovie}
-          </Text>
+          <h3 className="result">뽑기결과</h3>
+          <p css={gameResult.movieNm}>{selectedMovie}</p>
           <div css={gameResult.bottom}>
-            <Text
-              typography="p"
-              aria-label={parseSeletedOption(selected, true)}
-            >
+            <p aria-label={parseSeletedOption(selected, true)}>
               {parseSeletedOption(selected)}
-            </Text>
+            </p>
             <Button css={gameResult.initButton} onClick={initGame}>
               다시뽑기
             </Button>
