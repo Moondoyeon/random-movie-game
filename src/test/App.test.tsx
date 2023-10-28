@@ -6,17 +6,16 @@ import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { server } from 'mock/server';
+import App from '../App';
+import Loading from 'components/@common/Loading';
+import ModalProvider from 'context/ModalContext';
+import RootErrorFallback from 'components/@helper/ErrorBoundary/RootErrorFallback';
 import {
   get404Error,
   get500Error,
   getMockMovieData,
   getNetworkError,
 } from 'mock/handlers';
-
-import App from '../App';
-import Loading from 'components/@common/Loading';
-import ModalProvider from 'context/ModalContext';
-import RootErrorFallback from 'components/@helper/ErrorBoundary/RootErrorFallback';
 
 describe('App test', () => {
   afterEach(() => {
@@ -35,7 +34,6 @@ describe('App test', () => {
       expect(screen.queryByText(/S T A R T/)).toBeInTheDocument();
     });
     user.click(await screen.findByText(/S T A R T/));
-
     await waitFor(() => {
       expect(screen.queryByText(/S T A R T/)).not.toBeInTheDocument();
     });
@@ -55,7 +53,8 @@ describe('App test', () => {
     expect(slotButton3).toBeEnabled();
   });
   test('"슬롯" 버튼을 전부 누르면 선택된 값을 서버로 전송하고, 응답결과를 받는다.', async () => {
-    server.use(rest.get(`${process.env.REACT_APP_BASE_URL}`, getMockMovieData));
+    server.use(rest.get('/test', getMockMovieData));
+
     render(
       <Router>
         <App />
@@ -101,7 +100,7 @@ describe('App test', () => {
       expect(screen.queryByText(/S T A R T/)).toBeInTheDocument();
     });
   });
-  test('404 에러가 발생하면 404 페이지가 나타난다. 버튼을 눌러 진입페이지으로 이동한다', async () => {
+  test('404 에러가 발생하면 404 페이지가 나타난다.', async () => {
     render(
       <Router>
         <ModalProvider>
@@ -113,8 +112,7 @@ describe('App test', () => {
         </ModalProvider>
       </Router>,
     );
-    server.use(rest.get(`${process.env.REACT_APP_BASE_URL}`, get404Error));
-
+    server.use(rest.get('/test', get404Error));
     user.click(await screen.findByText(/S T A R T/));
     user.click(await screen.findByRole('button', { name: 'country' }));
     user.click(await screen.findByRole('button', { name: 'type' }));
@@ -125,14 +123,9 @@ describe('App test', () => {
         screen.queryByText(/존재하지 않는 페이지에요/),
       ).toBeInTheDocument();
     });
-
-    // user.click(await screen.findByRole('button'));
-    // waitFor(() => {
-    //   expect(screen.findByText(/S T A R T/)).toBeInTheDocument();
-    // });
   });
 
-  test('500 에러가 발생하면 에러 모달이 나타난다. 닫기버튼을 누르면 진입페이지로 이동한다', async () => {
+  test('500 에러가 발생하면 에러 모달이 나타난다.', async () => {
     // CreatePortal 사용시 Jest가 모달을 인식못함. 분기 후 테스트 중
     render(
       <Router>
@@ -146,10 +139,8 @@ describe('App test', () => {
       </Router>,
     );
 
-    server.use(rest.get(`${process.env.REACT_APP_BASE_URL}`, get500Error));
-
+    server.use(rest.get('/test', get500Error));
     user.click(await screen.findByText(/S T A R T/));
-
     user.click(await screen.findByRole('button', { name: 'country' }));
     user.click(await screen.findByRole('button', { name: 'type' }));
     user.click(await screen.findByRole('button', { name: 'year' }));
@@ -161,11 +152,6 @@ describe('App test', () => {
         ),
       ).toBeInTheDocument();
     });
-
-    // user.click(await screen.findByText('닫기'));
-    // waitFor(() => {
-    //   expect(screen.findByText(/S T A R T/)).toBeInTheDocument();
-    // });
   });
 
   test('네트워크 에러가 발생하면 에러 모달이 나타난다.', async () => {
@@ -182,10 +168,8 @@ describe('App test', () => {
       </Router>,
     );
 
-    server.use(rest.get(`${process.env.REACT_APP_BASE_URL}`, getNetworkError));
-
+    server.use(rest.get('/test', getNetworkError));
     user.click(await screen.findByText(/S T A R T/));
-
     user.click(await screen.findByRole('button', { name: 'country' }));
     user.click(await screen.findByRole('button', { name: 'type' }));
     user.click(await screen.findByRole('button', { name: 'year' }));

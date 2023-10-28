@@ -1,6 +1,6 @@
-import Axios from 'axios';
-import { MovieData, SlotOptionParams } from 'types/game';
-export const axios = Axios.create({
+import axios from 'axios';
+import { MovieApiResponse, MovieApiParams } from 'types/game';
+export const axiosInstance = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
   params: {
     key: process.env.REACT_APP_KOBIS_API_KEY,
@@ -13,25 +13,16 @@ export const axios = Axios.create({
   },
 });
 
-export type ParamsType = {
-  [key: string]: string;
-};
-
 export const httpForTest = {
-  get: async function get(url: string, params?: SlotOptionParams) {
-    return await axios.get(url, { params }).then(res => res.data);
+  get: async function get(url: string) {
+    return await axios.get(url).then(res => res.data);
   },
 };
-
-export const httpForCacheHeader = {
-  get: async function get<Response = unknown>(
-    url: string,
-    params?: SlotOptionParams,
-  ) {
-    return await axios.get<Response>(url, { params });
+export const http = {
+  get: async function get<Response = unknown>(url: string, params?: unknown) {
+    return await axiosInstance.get<Response>(url, { params });
   },
 };
-
-export function getRandomMovieData(params: SlotOptionParams) {
-  return httpForCacheHeader.get<MovieData>('', params);
+export function getRandomMovieData(params: MovieApiParams) {
+  return http.get<MovieApiResponse>('', params);
 }

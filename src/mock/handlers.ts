@@ -50,8 +50,8 @@ export const getNetworkError: Parameters<typeof rest.get>[1] = (_, res) => {
 };
 
 export const handlers = [
-  rest.get(`${process.env.REACT_APP_BASE_URL}`, getMockMovieData),
-  rest.get(`${process.env.REACT_APP_BASE_URL}`, get404Error),
-  rest.get(`${process.env.REACT_APP_BASE_URL}`, get500Error),
-  rest.get(`${process.env.REACT_APP_BASE_URL}`, getNetworkError),
+  rest.get('/test', getMockMovieData),
+  rest.get('/notFoundError', get404Error),
+  rest.get('/serverError', get500Error),
+  rest.get('/networkError', getNetworkError),
 ];

@@ -8,9 +8,8 @@ import reset from 'style/reset';
 import Loading from 'components/@common/Loading';
 import ModalProvider from 'context/ModalContext';
 import { Analytics } from '@vercel/analytics/react';
-
 // import { worker } from 'mock/browser';
-// if (process.env.NODE_ENV === 'development') {
+// if (process.env.NODE_ENV !== 'production') {
 //   worker.start({
 //     onUnhandledRequest: 'bypass',
 //   });
