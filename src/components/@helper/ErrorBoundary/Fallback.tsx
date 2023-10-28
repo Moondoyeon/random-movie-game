@@ -1,6 +1,5 @@
 import { css } from '@emotion/react';
 import Button from 'components/@common/Button';
-import Text from 'components/@common/Text';
 import { slot } from 'pages/movieGame.style';
 import colors from 'style/colors';
 import { responsive } from 'style/mixin';
@@ -33,13 +32,13 @@ function Fallback({
           <div css={fallback.spinningSquare}>
             <div css={fallback.textBox}>
               <div css={fallback.cryingEyes}>
-                <Text typography="h2">ㅠ</Text>
-                <Text typography="h2">ㅠ</Text>
+                <p>ㅠ</p>
+                <p>ㅠ</p>
               </div>
-              <Text typography="h5">
-                앗..! <br /> {mainText} <br /> {errorName}
-              </Text>
-              <Text typography="p">{subText}</Text>
+              <p className="mainText">
+                앗..! {mainText} <br /> {errorName}
+              </p>
+              <p className="subText">{subText}</p>
             </div>
           </div>
           <Button
@@ -93,10 +92,20 @@ export const fallback = {
     align-items: center;
     justify-content: space-between;
     text-align: center;
+    .mainText {
+      font-family: Galmuri11;
+      font-weight: 800;
+      font-size: 20px;
+    }
+    .subText {
+      font-size: 14px;
+    }
   `,
   cryingEyes: css`
     display: flex;
     width: 100%;
     justify-content: space-around;
+    font-size: 44px;
+    font-weight: 800;
   `,
 };

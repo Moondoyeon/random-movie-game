@@ -1,7 +1,8 @@
+import { css } from '@emotion/react';
 import BackDrop from 'components/@common/BackDrop';
 import Button from 'components/@common/Button';
-import Text from 'components/@common/Text';
 import { gameResult } from 'components/movieGame/GameResult.style';
+import { responsive } from 'style/mixin';
 import { FallbackProps } from 'types/errorBoundary';
 import { isRootError } from 'utils/confirmErrorType';
 
@@ -22,19 +23,27 @@ function MovieErrorFallback({
     return (
       <BackDrop whiteBoard>
         <div css={gameResult.box}>
-          <Text typography="p">뽑기결과</Text>
-          <Text typography="h5" css={gameResult.movieNm}>
-            앗! 랜덤영화를 뽑지 못헀어요 ㅠㅠ
-          </Text>
-          <div css={gameResult.bottom}>
-            <Button
-              css={gameResult.initButton}
-              onClick={handleResetError}
-              aria-label="다시뽑기"
-            >
-              다시 뽑기
-            </Button>
-          </div>
+          <p
+            css={css`
+              font-family: Galmuri11;
+              font-weight: 700;
+              margin: 10px 0 24px 0;
+              text-align: center;
+              font-size: 30px;
+              ${responsive('phone')} {
+                font-size: 22px;
+              }
+            `}
+          >
+            앗! 랜덤영화를 <br /> 뽑지 못헀어요 ㅠㅠ
+          </p>
+          <Button
+            css={gameResult.initButton}
+            onClick={handleResetError}
+            aria-label="다시뽑기"
+          >
+            다시 뽑기
+          </Button>
         </div>
       </BackDrop>
     );

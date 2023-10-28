@@ -8,8 +8,12 @@ export const gameResult = {
     display: flex;
     flex-direction: column;
     align-items: center;
+    ${responsive('phone')} {
+      padding: 5px 0;
+    }
     .result {
       font-size: 20px;
+      font-weight: 700;
       ${responsive('phone')} {
         font-size: 16px;
       }
@@ -34,6 +38,9 @@ export const gameResult = {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    p {
+      font-size: 14px;
+    }
   `,
   initButton: css`
     background-color: ${colors.inverseGrey800};

@@ -10,7 +10,7 @@ const reset = css`
   }
 
   @font-face {
-    font-family: 'Galmuri11';
+    font-family: Galmuri11;
     src:
       local('Galmuri11 Regular'),
       url('fonts/subset-Galmuri11-Regular.woff2') format('woff2'),
@@ -21,7 +21,7 @@ const reset = css`
   }
 
   @font-face {
-    font-family: 'Galmuri11';
+    font-family: Galmuri11;
     src:
       local('Galmuri11 Bold'),
       url('fonts/subset-Galmuri11-Bold.woff2') format('woff2'),
