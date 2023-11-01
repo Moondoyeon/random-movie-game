@@ -1,5 +1,6 @@
 import { AxiosResponseHeaders } from 'axios';
-export type MovieSlotOption = 'country' | 'year' | 'type';
+export type SlotOption = Record<string, Record<string, string>>;
+export type SelectedSlotOption = Record<string, string>;
 export interface MovieApiParams {
   targetDt: string;
   multiMovieYn: string;
@@ -25,26 +26,17 @@ export interface Movie {
   scrnCnt: string;
   showCnt: string;
 }
-export interface MovieData {
-  headers: AxiosResponseHeaders;
-  boxOfficeResult: {
-    boxofficeType: string;
-    weeklyBoxOfficeList: Movie[];
-    showRange: string;
-    yearWeekTime: string;
-  };
-}
 
 export interface MovieApiResponse {
   headers: AxiosResponseHeaders;
-  data: MovieList;
+  data: MovieData;
   request: XMLHttpRequest;
   status: number;
   statusText: string;
   config: unknown;
 }
 
-export interface MovieList {
+export interface MovieData {
   boxOfficeResult: {
     boxofficeType: string;
     weeklyBoxOfficeList: Movie[];

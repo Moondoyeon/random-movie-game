@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import Button from 'components/@common/Button';
-import { slot } from 'pages/movieGame.style';
+import { slot } from 'pages/movieGamePage.style';
 import colors from 'style/colors';
 import { responsive } from 'style/mixin';
 import { FallbackProps } from 'types/errorBoundary';

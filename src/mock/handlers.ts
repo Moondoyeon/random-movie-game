@@ -1,5 +1,5 @@
 import { rest } from 'msw';
-const movies = {
+const MOCK_MOVIE_DATA = {
   boxOfficeResult: {
     boxofficeType: '[mocked] 주말 박스오피스',
     showRange: '20210514~20210516',
@@ -34,7 +34,7 @@ export const getMockMovieData: Parameters<typeof rest.get>[1] = (
   res,
   ctx,
 ) => {
-  return res(ctx.status(200, 'ok'), ctx.json(movies));
+  return res(ctx.status(200, 'ok'), ctx.json(MOCK_MOVIE_DATA));
 };
 
 export const get404Error: Parameters<typeof rest.get>[1] = (_, res, ctx) => {

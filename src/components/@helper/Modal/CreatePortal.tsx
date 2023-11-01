@@ -22,7 +22,6 @@ function CreatePortal() {
 
     const handleSubmit = async () => {
       if (typeof onSubmit === 'function') await onSubmit();
-      // hideModal();
     };
 
     const handleClick = () => {

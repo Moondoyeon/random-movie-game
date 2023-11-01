@@ -1,5 +1,5 @@
 import { HTMLAttributes, useEffect, useState } from 'react';
-import { initNum } from 'utils';
+import { addNum, initNum, rotateNum } from 'utils';
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
   name: string;
@@ -16,17 +16,8 @@ function Slot({
   getSelectedOption,
   ...props
 }: Props) {
-  const ArrayedOption = Object.entries(option);
-  const len = ArrayedOption.length;
-  const addNum = (num: number) => {
-    if (num === len - 1) return 0;
-    else return num + 1;
-  };
-  const rotateNum = (num: number) => {
-    if (num === -1) return len - 1;
-    if (num === len) return 0;
-    else return num;
-  };
+  const ArrayedSlotOption = Object.entries(option);
+  const len = ArrayedSlotOption.length;
   const [num, setNum] = useState(initNum(len));
   let interval: ReturnType<typeof setInterval>;
 
@@ -34,7 +25,7 @@ function Slot({
     if (!isFirstEntry && isSpinning[name]) {
       interval = setInterval(() => {
         const nextNum = num;
-        setNum(addNum(nextNum));
+        setNum(addNum(nextNum, len));
       }, 500);
       return () => {
         clearInterval(interval);
@@ -51,9 +42,9 @@ function Slot({
 
   return (
     <>
-      <div {...props}>{ArrayedOption[rotateNum(num - 1)][1]}</div>
-      <div {...props}>{ArrayedOption[num][1]}</div>
-      <div {...props}>{ArrayedOption[rotateNum(num + 1)][1]}</div>
+      <div {...props}>{ArrayedSlotOption[rotateNum(num - 1, len)][1]}</div>
+      <div {...props}>{ArrayedSlotOption[num][1]}</div>
+      <div {...props}>{ArrayedSlotOption[rotateNum(num + 1, len)][1]}</div>
     </>
   );
 }

@@ -1,6 +1,6 @@
 import { MovieApiParams } from 'types/game';
 import { getRandomMovieData } from './http';
-export class CacheApi {
+export class CacheMovieApi {
   private static movieCacheStorage = 'RANDOM_MOVIE_GAME_CACHE';
   private static baseUrl = process.env.REACT_APP_BASE_URL;
   private static defaultParams = `key=${process.env.REACT_APP_KOBIS_API_KEY}&weekGb=0&itemPerPage=5`;

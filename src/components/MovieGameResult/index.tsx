@@ -1,18 +1,25 @@
 import useMovieData from 'hooks/useMovieData';
 import BackDrop from '../@common/BackDrop';
 import Button from 'components/@common/Button';
-import { gameResult } from './GameResult.style';
-import { parseSeletedOption } from 'utils';
+import { gameResult } from './movieGameResult.style';
+import { parseSeletedMovieOption } from 'utils';
+import { SelectedSlotOption } from 'types/game';
+import { useMemo } from 'react';
 
 interface Props {
-  selected: Record<string, string>;
+  selected: SelectedSlotOption;
   initEntrtyNSelection: () => void;
 }
 
-function GameResult({ selected, initEntrtyNSelection }: Props) {
+function MovieGameResult({ selected, initEntrtyNSelection }: Props) {
   const { selectedMovie, resetMovieData } = useMovieData({
     selected,
   });
+  const hashTag = useMemo(() => parseSeletedMovieOption(selected), [selected]);
+  const hashTagAriaLabel = useMemo(
+    () => parseSeletedMovieOption(selected, true),
+    [selected],
+  );
 
   const initGame = () => {
     initEntrtyNSelection();
@@ -26,9 +33,7 @@ function GameResult({ selected, initEntrtyNSelection }: Props) {
           <h3 className="result">뽑기결과</h3>
           <p css={gameResult.movieNm}>{selectedMovie}</p>
           <div css={gameResult.bottom}>
-            <p aria-label={parseSeletedOption(selected, true)}>
-              {parseSeletedOption(selected)}
-            </p>
+            <p aria-label={hashTagAriaLabel}>{hashTag}</p>
             <Button css={gameResult.initButton} onClick={initGame}>
               다시뽑기
             </Button>
@@ -37,4 +42,4 @@ function GameResult({ selected, initEntrtyNSelection }: Props) {
       </BackDrop>
     );
 }
-export default GameResult;
+export default MovieGameResult;
