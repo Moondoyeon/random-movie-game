@@ -4,7 +4,6 @@ import Button from 'components/@common/Button';
 import { gameResult } from './movieGameResult.style';
 import { parseSeletedMovieOption } from 'utils';
 import { SelectedSlotOption } from 'types/game';
-import { useMemo } from 'react';
 
 interface Props {
   selected: SelectedSlotOption;
@@ -15,11 +14,8 @@ function MovieGameResult({ selected, initEntrtyNSelection }: Props) {
   const { selectedMovie, resetMovieData } = useMovieData({
     selected,
   });
-  const hashTag = useMemo(() => parseSeletedMovieOption(selected), [selected]);
-  const hashTagAriaLabel = useMemo(
-    () => parseSeletedMovieOption(selected, true),
-    [selected],
-  );
+  const hashTag = parseSeletedMovieOption(selected);
+  const hashTagAriaLabel = parseSeletedMovieOption(selected, true);
 
   const initGame = () => {
     initEntrtyNSelection();
