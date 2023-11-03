@@ -5,9 +5,11 @@ import { responsive } from 'style/mixin';
 export const gameResult = {
   box: css`
     width: 100%;
+    min-height: 150px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     ${responsive('phone')} {
       padding: 5px 0;
     }
@@ -21,8 +23,9 @@ export const gameResult = {
   `,
   movieNm: css`
     font-family: Galmuri11;
-    padding: 20px 10px;
-    margin: 10px 0;
+    background-color: blue;
+    padding: 10px;
+    margin: 12px 0;
     text-align: center;
     width: 90%;
     word-wrap: break-word;

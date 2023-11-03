@@ -1,4 +1,6 @@
-export const MOVIE_SLOTOPTION = {
+import { SlotOption } from 'types/game';
+
+export const MOVIE_SLOTOPTION: SlotOption = {
   country: {
     K: '국내',
     F: '외국',

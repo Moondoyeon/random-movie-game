@@ -4,9 +4,9 @@ import useSlot from 'hooks/useSlot';
 import Button from 'components/@common/Button';
 import Slot from 'components/@common/Slot';
 import BackDrop from 'components/@common/BackDrop';
-import GameResult from 'components/movieGame/GameResult';
+import MovieGameResult from 'components/MovieGameResult';
 import { MOVIE_SLOTOPTION } from 'constants/slotOption';
-import { slot, startButton } from './movieGame.style';
+import { slot, startButton } from './movieGamePage.style';
 import Loading from 'components/@common/Loading';
 
 const MovieErrorFallback = lazy(
@@ -59,12 +59,12 @@ function MovieGamePage() {
         })}
       </section>
 
-      <Suspense fallback={<Loading whiteBoard />}>
+      <Suspense fallback={<Loading whiteBoard height={150} />}>
         <ErrorBoundary
           FallbackComponent={MovieErrorFallback}
           onReset={initEntrtyNSelection}
         >
-          <GameResult
+          <MovieGameResult
             selected={selected}
             initEntrtyNSelection={initEntrtyNSelection}
           />

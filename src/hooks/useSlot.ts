@@ -1,7 +1,8 @@
 import { useState } from 'react';
+import { SlotOption } from 'types/game';
 
 interface Props {
-  slotOption: Record<string, Record<string, string>>;
+  slotOption: SlotOption;
 }
 
 function useSlot({ slotOption }: Props) {
@@ -32,11 +33,11 @@ function useSlot({ slotOption }: Props) {
   };
 
   const getSelectedOption = (name: string, num: number) => {
-    const selected = Object.keys(slotOption[name])[num];
+    const selectedOneOption = Object.keys(slotOption[name])[num];
 
     setSelected(prev => ({
       ...prev,
-      [name]: selected,
+      [name]: selectedOneOption,
     }));
   };
 

@@ -44,7 +44,7 @@ const WhiteBoard = styled(Content)`
   position: absolute;
   background-color: ${colors.white};
   width: 500px;
-  min-height: 190px;
+  /* min-height: 190px; */
   border-radius: 6px;
   padding: 20px 20px;
   ${responsive('phone')} {
