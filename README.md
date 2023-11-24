@@ -42,6 +42,13 @@
 
 ![Group 88 (3)](https://github.com/Moondoyeon/random-movie-game/assets/102936206/4603b760-be42-4998-961f-a52df90021c7)
 
+**데모**
+|상황|UI|
+|------|---|
+|정상응답|<img width="550" alt="정상응답" src="https://github.com/Moondoyeon/random-movie-game/assets/102936206/1a2f222a-cbd3-4f36-86d5-e391141d9b81">|
+|에러모달|<img width="550" alt="에러모달" src="https://github.com/Moondoyeon/random-movie-game/assets/102936206/3d5ef5e7-4322-49f8-85c5-0878d964bf0c">|
+|에러페이지|<img width="550" alt="에러페이지" src="https://github.com/Moondoyeon/random-movie-game/assets/102936206/4d698e3f-d458-4d39-be5c-e0ba130995f3">|
+
 **프로젝트 설치, 테스트**
 
 ```sh
