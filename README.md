@@ -23,12 +23,12 @@
 
 ### UI 프로토타입 (<a href="https://www.figma.com/file/sh7DrrBEIxXkvA36KWrDhA/random-game?type=design&node-id=402-2&mode=design&t=1XtMEZqx7wKQA1ma-0" target="_blank">Figma</a>)
 
-<img width="550" alt="UI prototype" src="https://github.com/Moondoyeon/random-movie-game/assets/102936206/e6205444-8fc5-4fd1-b919-42fe7c87c050"/>
+<img width="600" alt="UI prototype" src="https://github.com/Moondoyeon/random-movie-game/assets/102936206/e6205444-8fc5-4fd1-b919-42fe7c87c050"/>
 
 ### 컴포넌트 구조 설계
 
 기능을 구현하기 전에 state 흐름이 올바를지 예상하기 위해 설계하였습니다.
-<img width="550" alt="컴포넌트구조" src="https://github.com/Moondoyeon/random-movie-game/assets/102936206/efedf0a0-c270-469f-97e1-a374a9d1ecd9">
+<img width="600" alt="컴포넌트구조" src="https://github.com/Moondoyeon/random-movie-game/assets/102936206/efedf0a0-c270-469f-97e1-a374a9d1ecd9">
 
 ### 폴더구조
 
@@ -52,7 +52,7 @@ src/
 
 ### 파이프라인
 
-<img width="550" src="https://github.com/Moondoyeon/random-movie-game/assets/102936206/4603b760-be42-4998-961f-a52df90021c7"/>
+<img width="600" src="https://github.com/Moondoyeon/random-movie-game/assets/102936206/4603b760-be42-4998-961f-a52df90021c7"/>
 
 ## 기술스택
 
@@ -259,6 +259,7 @@ function ModalProvider({ children }: { children: ReactNode }) {
 
 ### 에러페이지 - 원인불명의 런타임에러
 - 원인 불명의 런타임 에러발생시, 유저의 제보를 요청하는 에러페이지를 보여줍니다.
+- 버튼을 누르면 개발자 이메일이 복사됩니다.
 
 <img width="440" alt="원인불명의 런타임에러페이지" src="https://github.com/Moondoyeon/random-movie-game/assets/102936206/701ca32e-1f61-4fa5-ad03-5906e9bf1414"/>
 
