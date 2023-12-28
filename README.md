@@ -1,11 +1,9 @@
 # 랜덤영화뽑기
-
+**웹링크** https://random-game-sigma.vercel.app/
 ## 프로젝트 개요
 
-- 777 게임으로 영화를 뽑는 서비스입니다.
-- 프로덕트 개발의 모든 단계를 경험하고, 깊게 학습하기 위한 프로젝트 입니다.
-- 사실 게임 기능을 구현하는 기간은 일주일 정도 소요됐습니다만, 이외에 캐싱, 테스트, 에러핸들링, CI/CD, 성능최적화와 같이 생명력 있는 프로덕트를 만들기 위한 처리들을 어떻게 해야 잘 적용할 수 있을지 방법들을 찾아보고 고민하고 선택하고 학습하고 적용하는 기간이 많이 걸렸습니다 :)
-- 학습과정을 기록으로 남겼으니 여유가 되신다면 읽어주시면 감사하겠습니다
+- 777 게임을 모티브로, 3개의 버튼을 눌러 슬롯머신을 멈추고 조건에 맞는 영화를 추천하는 서비스입니다.
+- 기능 개발 과정을 기록해보았습니다. 여유가 되신다면 읽어주시면 감사하겠습니다
 
   - <a href="https://moondoyeon.notion.site/Headless-546b6edbe14544a9a6c4ab60ba307187?pvs=4" target="_blank">변경에 유연한 컴포넌트 만들기 (Headless Component)</a>
   - <a href="https://moondoyeon.notion.site/context-API-createPortal-2b985197049e41d2af3897eca960d2f7?pvs=4" target="_blank">전역에서 모달관리하기(context API, React.Portal)</a>
@@ -19,6 +17,22 @@
   - <a href="https://moondoyeon.notion.site/07fa3afd7ae1486a99572532df823a7d?pvs=4" target="_blank">트러블슈팅</a>
     <br/>
 
+## 기술스택
+
+| 역할             | 패키지명                                                |
+| ---------------- | ------------------------------------------------------- |
+| **코어**         | React, TypeScript                                       |
+| **스타일**       | Emotion                                                 |
+| **상태관리**     | Context API                                             |
+| **CI/CD**        | Github Actions, Vercel                                  |
+| **비동기통신**   | Axios                                                   |
+| **테스트**       | Jest, React-Testing-Library, MSW                        |
+| **에러핸들링**   | react-error-boundary                                    |
+| **패키지매니저** | Yarn                                                    |
+| **린트/포맷**    | eslint, prettier                                        |
+| **etc**          | React-Router-Dom,<br/> customize-cra, react-app-rewired |
+| **문서**         | Git, Figma, Notion                                      |
+
 ## 설계사항
 
 ### UI 프로토타입 (<a href="https://www.figma.com/file/sh7DrrBEIxXkvA36KWrDhA/random-game?type=design&node-id=402-2&mode=design&t=1XtMEZqx7wKQA1ma-0" target="_blank">Figma</a>)
@@ -29,6 +43,11 @@
 
 기능을 구현하기 전에 state 흐름이 올바를지 예상하기 위해 설계하였습니다.
 <img width="600" alt="컴포넌트구조" src="https://github.com/Moondoyeon/random-movie-game/assets/102936206/efedf0a0-c270-469f-97e1-a374a9d1ecd9">
+
+
+### 파이프라인
+
+<img width="600" src="https://github.com/Moondoyeon/random-movie-game/assets/102936206/4603b760-be42-4998-961f-a52df90021c7"/>
 
 ### 폴더구조
 
@@ -49,26 +68,6 @@ src/
 ├── types // 타입 정의
 └── utils // 공통으로 사용하는 함수
 ```
-
-### 파이프라인
-
-<img width="600" src="https://github.com/Moondoyeon/random-movie-game/assets/102936206/4603b760-be42-4998-961f-a52df90021c7"/>
-
-## 기술스택
-
-| 역할             | 패키지명                                                |
-| ---------------- | ------------------------------------------------------- |
-| **코어**         | React, TypeScript                                       |
-| **스타일**       | Emotion                                                 |
-| **상태관리**     | Context API                                             |
-| **CI/CD**        | Github Actions, Vercel                                  |
-| **비동기통신**   | Axios                                                   |
-| **테스트**       | Jest, React-Testing-Library, MSW                        |
-| **에러핸들링**   | react-error-boundary                                    |
-| **패키지매니저** | Yarn                                                    |
-| **린트/포맷**    | eslint, prettier                                        |
-| **etc**          | React-Router-Dom,<br/> customize-cra, react-app-rewired |
-| **문서**         | Git, Figma, Notion                                      |
 
 ## 고민한 점
 
