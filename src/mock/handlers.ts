@@ -36,6 +36,9 @@ export const getMockMovieData: Parameters<typeof rest.get>[1] = (
 ) => {
   return res(ctx.status(200, 'ok'), ctx.json(MOCK_MOVIE_DATA));
 };
+export const getApiError: Parameters<typeof rest.get>[1] = (_, res, ctx) => {
+  return res(ctx.status(400), ctx.json(undefined));
+};
 
 export const get404Error: Parameters<typeof rest.get>[1] = (_, res, ctx) => {
   return res(ctx.status(404));
@@ -51,6 +54,7 @@ export const getNetworkError: Parameters<typeof rest.get>[1] = (_, res) => {
 
 export const handlers = [
   rest.get('/test', getMockMovieData),
+  rest.get('/apiError', getApiError),
   rest.get('/notFoundError', get404Error),
   rest.get('/serverError', get500Error),
   rest.get('/networkError', getNetworkError),

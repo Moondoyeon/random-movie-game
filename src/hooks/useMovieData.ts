@@ -32,7 +32,7 @@ function useMovieData({ selected }: Props) {
   // env: test or dev, 용도: Jest, msw 브라우저 테스트
   const getTestMovieList = async () => {
     try {
-      return await httpForTest.get('/test');
+      return await httpForTest.get('/apiError');
     } catch (error) {
       showBoundary(error);
     }
