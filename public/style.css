@@ -3,4 +3,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+  }
+}
+
+footer {
+  margin: 16px 0;
+  text-align: center;
 }
