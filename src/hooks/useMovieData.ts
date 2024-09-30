@@ -17,7 +17,7 @@ function useMovieData({ selected }: Props) {
 
   const { showBoundary } = useErrorBoundary();
 
-  // env: prod or dev
+  // env: prod || dev
   const getMovieList = async () => {
     try {
       return await CacheMovieApi.getMovieData({
@@ -29,7 +29,7 @@ function useMovieData({ selected }: Props) {
       showBoundary(error);
     }
   };
-  // env: test or dev, 용도: Jest, msw 브라우저 테스트
+  // env: test || dev, 용도: Jest, msw 브라우저 테스트
   const getTestMovieList = async () => {
     try {
       return await httpForTest.get('/test');
