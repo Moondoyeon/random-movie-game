@@ -50,10 +50,6 @@
         {
           "key": "X-XSS-Protection",
           "value": "1; mode=block"
-        },
-        {
-          "key": "Content-Security-Policy",
-          "value": "script-src 'self' https://vercel.live; style-src 'unsafe-inline'; connect-src 'self' http://www.kobis.or.kr;"
         }
       ]
     }
