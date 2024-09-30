@@ -7,3 +7,8 @@
     flex-direction: column;
   }
 }
+
+footer {
+  margin: 16px 0;
+  text-align: center;
+}
