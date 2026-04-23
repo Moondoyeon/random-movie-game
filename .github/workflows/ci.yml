@@ -28,7 +28,7 @@ jobs:
         # 이전 step이 실패한 경우에만 이 step을 실행시키는 syntax
         uses: actions/github-script@v6
         with:
-          github-token: ${{ github.TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const pull_number = ${{ github.event.pull_request.number }}
             const updated_title = `[BUILD FAIL] ${{ github.event.pull_request.title }}`
@@ -74,7 +74,7 @@ jobs:
         if: ${{ failure() }}
         uses: actions/github-script@v6
         with:
-          github-token: ${{ github.TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const pull_number = ${{ github.event.pull_request.number }}
             const updated_title = `[TEST FAIL] ${{ github.event.pull_request.title }}`
@@ -96,7 +96,7 @@ jobs:
       - name: Approve PR, If test passes
         uses: actions/github-script@v6
         with:
-          github-token: ${{ github.TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const pull_number = ${{ github.event.pull_request.number }}
             await github.rest.pulls.createReview({
